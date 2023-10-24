@@ -4,7 +4,7 @@ Se você deseja manter seu histórico de navegação limpo e organizado, a exten
 
 1. **Baixe a Extensão:**
 
-   Primeiro, acesse o repositório da extensão "Limpador de Histórico de Navegação" no GitHub e baixe o arquivo ZIP contendo a extensão. [Link para o Repositório](URL_DO_REPOSITORIO).
+   Primeiro, acesse o repositório da extensão "Limpador de Histórico de Navegação" no GitHub e baixe o arquivo ZIP contendo a extensão. [Link para o Repositório](https://github.com/Gusvioli/extencoes/tree/main/limpador).
 
 2. **Extraia o Arquivo ZIP:**
 
