@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Limpador de histórico</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="scripts/content.js"></script>
+    </head>
+    <body>
+        <section>
+            <section class="icon-h2">
+                <img src="icon.png" alt="Icone do Limpador de histórico" />
+                <h2>
+                    Limpador de histórico
+                </h2>
+            </section>
+            <form>                
+                <label for="select-History" id="labe-select-History">Selecione o histórico que deseja limpar</label>
+                <select name="select" id="select-History">
+                </select>                        
+                <input
+                    type="text"
+                    id="valorASerApagado"
+                    placeholder="O que você quer limpar?"
+                >
+                <button id="limpar">Limpar</button>        
+                <button id="limparAll">Limpar Tudo</button>    
+            </form>
+            <div id="resultado"></div>  
+            <div id="resultadoPergunta"></div>
+        </section>
+        <footer>          
+            <p>
+                2023 Desenvolvido por <a
+                target="_blank"
+                href="https://github.com/Gusvioli"
+                alt="Link para Github de Gustavo Vieira - Gusvioli"
+                >
+                Gustavo Vieira - Gusvioli</a>
+            </p>
+        </footer>
+    </body>
+</html>

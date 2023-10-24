@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    padding: 10px;
+}
+
+body section {
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 440px;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+}
+
+.icon-h2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-h2 > h2 {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+
+body section form {
+    padding: 20px 10px 0 10px;
+    height: fit-content;
+    width: 380px;
+}
+
+body section form input {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+button {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    cursor: pointer;
+    color: aliceblue;
+    background-color: #4d90fe;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding-bottom: 5px;
+    width: 440px;
+}
+
+#pergunta {
+    padding: 0 10px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 440px;
+    margin-bottom: 10px;
+    word-break: break-all;
+}
+
+a {
+    text-decoration: none;
+    color: #4d90fe;
+}
+
+#resultado {
+    padding: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 380px;
+    margin-bottom: 10px;    
+    font-size: medium;
+    word-break: break-all;
+}
+
+#select-History {
+    padding: 3px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 335px;
+    margin-bottom: 10px;    
+    font-size: medium;
+    word-break: break-all;
+    border: 1px solid #ccc;
+}

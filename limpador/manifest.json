@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "Limpador de histórico de navegação",
+    "description": "Limpador de Histórico de Navegação: Uma extensão eficiente para limpar seu histórico de navegação, protegendo sua privacidade e mantendo sua experiência de navegação limpa e organizada.",
+    "version": "1.0",
+    "author": "Gusvioli",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Limpador de histórico de navegação",
+        "browser_style": true
+      },
+    "permissions": [
+        "activeTab",
+        "history"
+    ],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/content.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
