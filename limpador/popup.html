@@ -16,16 +16,19 @@
                 </h2>
             </section>
             <form>                
-                <label for="select-History" id="labe-select-History">Selecione o histórico que deseja limpar</label>
+                <label for="select-History" id="labe-select-History">Selecione o histórico que deseja limpar(max: 1000)
+                <a href="" alt="Divida?" title="O item selecionado será adicionado no campo 'O que você quer limpar?'">?</a>
+                </label>
                 <select name="select" id="select-History">
                 </select>                        
                 <input
                     type="text"
                     id="valorASerApagado"
                     placeholder="O que você quer limpar?"
+                    title="A exclusão se dará para todos os registros que contiverem o texto digitado"
                 >
-                <button id="limpar">Limpar</button>        
-                <button id="limparAll">Limpar Tudo</button>    
+                <button id="limpar" title="Limpar todos os registros que contiverem o texto digitado">Limpar</button>        
+                <button id="limparAll" title="Limpar todos os registros">Limpar Tudo</button>    
             </form>
             <div id="resultado"></div>  
             <div id="resultadoPergunta"></div>

@@ -17,6 +17,10 @@ body section {
     width: 440px;
 }
 
+body form label a {
+    font-size: medium;
+}
+
 img {
     width: 40px;
     height: 40px;
