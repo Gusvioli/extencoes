@@ -9,14 +9,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectHistoryLabel = document.getElementById('labe-select-History');
 
 
-    chrome.history.search({text: 'http'}, function (results) {
-        for (let i = 0; i < results.length; i++) {
+    chrome.history.search({text: '', maxResults: 1000}, (results) => {
+        for (let i = 0; i < results.length; i+=1) {
             const option = document.createElement('option', { id: 'option' });
             selectHistory.appendChild(option);
             option.textContent = results[i].url + ' -- ' + results[i].title;
             option.value = results[i].title;
             option.style.fontSize = '14px';
             option.style.padding = '5px';
+            option.style.margin = '5px';
+            option.style.height = 'auto';
         }
     });
 
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         } else {
             if(valorDigitado.length >= 128){
-                resultadoElement.textContent = 'Limite de 127 caracteres ultrapassado.';
+                resultadoElement.textContent = 'Limite de 128 caracteres ultrapassado.';
             } else {
                 chrome.history.search({ text: valorDigitado }, function (results) {
                     if (results.length === 0) {
@@ -77,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const valorDigitado = inputElement.value;
 
-        chrome.history.search({ text: valorDigitado }, function (results) {
+        chrome.history.search({ text: valorDigitado, maxResults: 1000 }, function (results) {
             if (results.length === 0) {
                 resultadoElement.textContent = 'Nenhum histórico encontrado';
 
