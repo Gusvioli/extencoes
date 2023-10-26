@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             for (let i = 0; i < results.length; i++) {
                                 chrome.history.deleteUrl({ url: results[i].url });
                             }
-                            resultadoElement.textContent = `Histórico com '${valorDigitado}' excluído com sucesso`;
+                            resultadoElement.textContent = `Histórico com '${valorDigitado}' excluído com sucesso um total de ${results.length} iten(s).`;
                             inputElement.value = '';
                         }
                     }
