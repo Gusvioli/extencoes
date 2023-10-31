@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 chrome.history.search({ text: valorDigitado }, function (results) {
                     if (results.length === 0) {
-                        resultadoElement.textContent = `Histórico com '${valorDigitado}' não encontrado.`;
+                        resultadoElement.textContent = `Item "${valorDigitado}" não encontrado.`;
                     } else {
                         if (!chrome.runtime.lastError) {
                             for (let i = 0; i < results.length; i++) {
