@@ -1,4 +1,4 @@
-# Instalação da Extensão "Limpador de Histórico de Navegação" para o Google Chrome
+# Instalação da Extensão "Limpador de Histórico de Navegação" para o Google Chrome e Opera
 
 Se você deseja manter seu histórico de navegação limpo e organizado, a extensão "Limpador de Histórico de Navegação" é a solução perfeita. Siga estas etapas simples para instalar a extensão no Google Chrome:
 
