@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const option = document.createElement('option', { id: 'option' });
             selectHistory.appendChild(option);
             option.textContent = results[i].url.slice(0, 45) + '...';
-            option.value = results[i].title;
+            option.value = results[i].url;
             option.style.fontSize = '14px';
             option.style.padding = '5px';
             option.style.margin = '5px';
