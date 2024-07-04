@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttonElementLimpar = document.getElementById('limpar');
     const buttonElementLimparAll = document.getElementById('limparAll');
     const resultadoElement = document.getElementById('resultado');
-    // const resultadoPergunta = document.getElementById('resultadoPergunta');
 
     const selectHistory = document.getElementById('select-History');
     const selectHistoryLabel = document.getElementById('labe-select-History');
@@ -13,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = 0; i < results.length; i+=1) {
             const option = document.createElement('option', { id: 'option' });
             selectHistory.appendChild(option);
-            option.textContent = results[i].url + ' -- ' + results[i].title;
+            option.textContent = results[i].url.slice(0, 45) + '...';
             option.value = results[i].title;
             option.style.fontSize = '14px';
             option.style.padding = '5px';
             option.style.margin = '5px';
             option.style.height = 'auto';
+            option.title = results[i].url;
         }
     });
 

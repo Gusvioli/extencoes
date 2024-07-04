@@ -1,21 +1,22 @@
 {
     "manifest_version": 3,
-    "name": "Limpador de histórico de navegação",
-    "description": "Uma extensão eficiente para limpar seu histórico de navegação, mantendo sua navegação limpa e organizada.",
+    "name": "Monitor de WhatsApp",
+    "description": "Extensão para monitorar o WhatsApp Web",
     "version": "1.0.4",
     "author": "Gusvioli",
     "icons": {
-        "16": "icon.png",
-        "48": "icon.png",
-        "128": "icon.png"
+        "16": "whatsapp.png",
+        "48": "whatsapp.png",
+        "128": "whatsapp.png"
     },
     "action": {
-        "default_icon": "icon.png",
+        "default_icon": "whatsapp.png",
         "default_popup": "popup.html",
-        "default_title": "Limpador de histórico de navegação",
+        "default_title": "Monitor de WhatsApp",
         "browser_style": true
       },
     "permissions": [
+        "activeTab",
         "history"
     ],
     "host_permissions": [
@@ -29,8 +30,7 @@
             ],
             "matches": [
                 "<all_urls>"
-            ],
-            "run_at": "document_end"
+            ]
         }
     ]
 }
