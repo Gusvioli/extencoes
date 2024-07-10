@@ -35,7 +35,7 @@ Se você deseja manter seu histórico de navegação limpo e organizado, a exten
    Clique no ícone da extensão e siga as instruções para começar a limpar seu histórico de navegação de forma eficiente e manter sua privacidade online.
 
    OU
-   
+
    [Link para o Chrome web Store](https://chromewebstore.google.com/detail/ggdnkefdkgbeajeofdbkammnaieojjgm).
    ![Limpador de Histórico de navegação - chrome web store](chrome_we_store_LHN.png)
 
