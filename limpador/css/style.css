@@ -6,6 +6,8 @@
 }
 body {
     padding: 10px;
+    background-color: #fff;
+    color: black;
 }
 
 body section {
@@ -28,7 +30,7 @@ img {
 
 .icon-h2 {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row;
     justify-content: center;
     align-items: center;
 }
@@ -38,6 +40,27 @@ img {
     padding-left: 10px;
 }
 
+.select-tradutor {
+    width: 100px;
+}
+
+#select-bandeira-tradutora {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+#select-bandeira-tradutora img {
+    width: 20px;
+    height: 20px;
+    margin: 0 3px;
+}
+
+#select-bandeira-tradutora div:hover {
+    cursor: pointer;
+}
 
 body section form {
     padding: 20px 10px 0 10px;

@@ -11,12 +11,35 @@
         <section>
             <section class="icon-h2">
                 <img src="icon.png" alt="Icone do Limpador de histórico" />
-                <h2>
+                <h2 id="traduzir-titulo">
                     Limpador de histórico
                 </h2>
+                <section name="select" id="select-bandeira-tradutora">
+                    <div
+                        id="brasil">
+                        <img
+                        src="brasil.png"
+                        width="20px"
+                        alt="Traduzir para o Português" />                    
+                    </div>
+                    <div
+                        id="eua">
+                        <img
+                        src="eua.png"
+                        width="20px"
+                        alt="Traduzir para o Inglês" />
+                    </div>
+                    <div
+                        id="espanha">
+                        <img
+                        src="espanha.png"
+                        width="20px"
+                        alt="Traduzir para o Espanhol" />
+                    </div>
+                </section>
             </section>
             <form> 
-                <a href="" alt="Divida?" title="O item selecionado será adicionado no campo 'O que você quer limpar?'">?</a>               
+                <a href="" id="interrogacao" title="O item selecionado será adicionado no campo 'O que você quer limpar?'">?</a>               
                 <label for="select-History" id="labe-select-History">Selecione o item no histórico que deseja limpar
                 </label>
                 <select name="select" id="select-History">
@@ -35,13 +58,15 @@
         </section>
         <footer>          
             <p>
-                2023 Desenvolvido por <a
+                2023 <span id="desenvolvidopor">Desenvolvido por</span> <a
+                id="linkGusvioli"
                 target="_blank"
                 href="https://github.com/Gusvioli"
-                alt="Link para Github de Gustavo Vieira - Gusvioli"
+                title="Link para Github de Gustavo Vieira - Gusvioli"
                 >
                 Gustavo Vieira - Gusvioli</a>
             </p>
+            
         </footer>
     </body>
 </html>
