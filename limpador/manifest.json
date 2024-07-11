@@ -16,7 +16,8 @@
         "browser_style": true
       },
     "permissions": [
-        "history"
+        "history",
+        "unlimitedStorage"
     ],
     "host_permissions": [
       "http://*/*",
