@@ -30,7 +30,7 @@ Proteger a segurança pessoal dos usuários da extensão ou do público.
 Implementamos medidas de segurança adequadas para proteger suas informações contra acesso, alteração, divulgação ou destruição não autorizados. No entanto, nenhuma transmissão de dados pela internet ou sistema de armazenamento eletrônico é 100% seguro.
 
 5. Retenção de Dados
-Manteremos suas informações pessoais apenas pelo tempo necessário para cumprir os propósitos para os quais as coletamos, incluindo qualquer requisito legal, contábil ou de relatório.
+Todos os dados coletados não são armazenados conosco permanecem exclusivamente no navegador onde a extensão foi instalada. Manteremos suas informações pessoais somente pelo período necessário para cumprir os propósitos para os quais foram coletadas, incluindo requisitos legais, contábeis ou de relatórios.
 
 6. Direitos dos Usuários
 6.1 Acesso e Correção
@@ -43,7 +43,7 @@ Você pode solicitar a exclusão de suas informações pessoais a qualquer momen
 Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página. Recomendamos que você revise esta política regularmente para se manter informado sobre como estamos protegendo suas informações.
 
 8. Contato
-Se você tiver alguma dúvida ou preocupação sobre esta Política de Privacidade ou nossas práticas de privacidade, entre em contato conosco através do e-mail: [email@example.com].
+Se você tiver alguma dúvida ou preocupação sobre esta Política de Privacidade ou nossas práticas de privacidade, entre em contato conosco através do e-mail: gustavovieiradeoliveira@gmail.com.
 
 9. Consentimento
 Ao usar a extensão, você consente com a coleta e uso de suas informações conforme descrito nesta Política de Privacidade.
