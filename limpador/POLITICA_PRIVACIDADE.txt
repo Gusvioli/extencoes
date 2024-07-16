@@ -13,9 +13,6 @@ Podemos coletar informações não pessoais, como tipo de navegador, idioma do n
 2.1 Limpeza do Histórico de Navegação
 As informações de navegação coletadas são usadas exclusivamente para fornecer a funcionalidade principal da extensão, que é limpar seu histórico de navegação conforme solicitado por você.
 
-2.2 Melhoria do Produto
-As informações não pessoais podem ser usadas para analisar tendências, administrar a extensão e melhorar a experiência do usuário.
-
 3. Compartilhamento de Informações
 3.1 Com Terceiros
 Não compartilhamos, vendemos ou alugamos suas informações pessoais a terceiros, exceto conforme descrito nesta Política de Privacidade.
@@ -48,6 +45,6 @@ Se você tiver alguma dúvida ou preocupação sobre esta Política de Privacida
 9. Consentimento
 Ao usar a extensão, você consente com a coleta e uso de suas informações conforme descrito nesta Política de Privacidade.
 
-Última atualização: 14 de julho de 2024
+Última atualização: 16 de julho de 2024
 
 Esta Política de Privacidade foi criada para assegurar que suas informações sejam manejadas de forma segura e responsável. Agradecemos por confiar no Limpador de Histórico de Navegação.
