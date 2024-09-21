@@ -81,17 +81,15 @@
         selectEUA.style.pointerEvents = 'none';
     });
 
-    document.getElementById('brasil').addEventListener('click', function() {
-        chrome.runtime.reload();
-    });
+    function traduzir(leng) {
+        document.getElementById(leng).addEventListener('click', function() {
+            chrome.runtime.reload();
+        });
+    }
 
-    document.getElementById('eua').addEventListener('click', function() {
-        chrome.runtime.reload();
-    });
-
-    document.getElementById('espanha').addEventListener('click', function() {
-        chrome.runtime.reload();
-    });
+    traduzir('brasil');
+    traduzir('eua');
+    traduzir('espanha');
     
     data.then((jsonData) => {
         selectH2Title.innerText = jsonData[localStorage.getItem('traduzir')].titulo;

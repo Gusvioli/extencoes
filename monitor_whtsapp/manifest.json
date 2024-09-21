@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Monitor de WhatsApp",
+    "description": "Uma extensão eficiente para monitorar o WhatsApp Web",
+    "version": "1.0.0",
+    "author": "Gusvioli",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Monitor de WhatsApp",
+        "browser_style": true
+      },
+    "permissions": [
+        "tabs",
+        "activeTab"
+       ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+      ],
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/content.js"
+            ],
+            "matches": [
+                "https://*web.whatsapp.com/*",
+                "http://*web.whatsapp.com/*"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}
