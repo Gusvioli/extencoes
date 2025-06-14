@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extensão Gemini</title>
-    <link rel="stylesheet" href="popup.css">
+  <meta charset="UTF-8">
+  <title>Gemini PrintScreen Auto</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <div id="popup-container">
-        <h1>Captura de Tela</h1>
-        <p>Selecione uma parte da tela e clique no botão abaixo para capturar.</p>
-        <button id="capture-button">Capturar Tela</button>
-        <div id="description-container">
-            <h2>Descrição:</h2>
-            <p id="description-text">A descrição aparecerá aqui.</p>
-        </div>
-    </div>
-    <script src="popup.js"></script>
+  <div id="pasteArea" tabindex="0" style="border:1px dashed #aaa; padding:10px; margin-bottom:10px;">
+    Pressione PrintScreen e depois abra esta janela e cole a imagem aqui.
+    A imagem será processada automaticamente.
+  </div>
+  <img id="previewImage" style="max-width:100%; display:none; margin-bottom:10px;" />
+  <div id="result"></div>
+  <script src="popup.js"></script>
 </body>
 </html>
