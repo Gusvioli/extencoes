@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Gemini PrintScreen Auto</title>
-  <link rel="stylesheet" href="popup.css">
-</head>
-<body>
-  <div id="pasteArea" tabindex="0" style="border:1px dashed #aaa; padding:10px; margin-bottom:10px;">
-    Pressione PrintScreen e depois abra esta janela e cole a imagem aqui.
-    A imagem será processada automaticamente.
-  </div>
-  <img id="previewImage" style="max-width:100%; display:none; margin-bottom:10px;" />
-  <div id="result"></div>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gemini PrintScreen Auto</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div style="display: flex; align-items: center; gap: 5px;">
+    <div style="display: flex; justify-content: flex-end;">
+      <button id="pinButton" title="Fixar janela e processar imagem" style="background:none;border:none;cursor:pointer;">
+      <img src="../../icons/push-pin_16984740.png" alt="Fixar" style="width:28px;height:28px;">
+      </button>
+    </div>
+      <div
+        id="pasteArea"
+        tabindex="0"
+        style="border: 1px dashed #aaa; padding: 10px; margin-bottom: 10px"
+      >
+        Pressione PrintScreen e depois abra esta janela e cole a imagem aqui. A
+        imagem será processada automaticamente.
+      </div>
+      <div>
+        <button
+          id="reloadButton"
+          style="display: none; background: none; border: none; cursor: pointer"
+        >
+          <img
+            src="../../icons/circle_14025102.png"
+            alt="Reenviar"
+            title="Tentar novamente"
+            style="width: 32px; height: 32px"
+          />
+        </button>
+      </div>
+    </div>
+    <img
+      id="previewImage"
+      style="max-width: 100%; display: none; margin-bottom: 10px"
+    />
+    <div id="result"></div>
+    <script src="popup.js"></script>
+  </body>
 </html>

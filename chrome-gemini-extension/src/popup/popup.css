@@ -4,7 +4,7 @@ body {
     padding: 20px;
     background-color: #f3f2f2;
     color: #333;
-    width: 500px;
+    width: 600px;
 }
 
 h1 {
@@ -42,3 +42,154 @@ button:hover {
     font-size: 14px;
     color: #555;
 }
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#result img {
+    max-width: 100%;
+    height: auto;
+}
+#reloadButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+#reloadButton img {
+    width: 32px;
+    height: 32px;
+}
+#captureBtn {
+    margin-top: 10px;
+    background-color: #007bff;
+}
+#captureBtn:hover {
+    background-color: #0056b3;
+}
+#captureBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#description-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+#description-text {
+    font-size: 14px;
+    color: #555;
+}
+#pasteArea {
+    border: 1px dashed #aaa;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+#previewImage {
+    max-width: 100%;
+    display: none;
+    margin-bottom: 10px;
+}
+#sendButton {
+    display: block;
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+}
+#sendButton:hover {
+    background-color: #218838;
+}
+#sendButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+#reloadButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+#reloadButton img {
+    width: 32px;
+    height: 32px;
+}
+#capture-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#capture-button:hover {
+    background-color: #0056b3;
+}
+#capture-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+#screenshot-area {
+    margin-top: 20px;
+    border: 1px dashed #ccc;
+    padding: 10px;
+    text-align: center;
+}
+#screenshot-area img {
+    max-width: 100%;
+    height: auto;
+}
+#description {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+#description-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+#description-text {
+    font-size: 14px;
+    color: #555;
+}
+#pasteArea {
+    border: 1px dashed #aaa;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 50px;
+}
+#previewImage {
+    max-width: 100%;
+    display: none;
+    margin-bottom: 10px;
+}
+#sendButton {
+    display: block;
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+}
+#sendButton:hover {
+    background-color: #218838;
+}       
