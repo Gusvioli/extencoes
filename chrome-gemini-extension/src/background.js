@@ -8,6 +8,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         chrome.tabs.captureVisibleTab(null, {}, (image) => {
             sendResponse({ image: image });
         });
-        return true; // Indicates that the response will be sent asynchronously
+        return true; // Indica que a resposta será enviada de forma assíncrona
     }
 });

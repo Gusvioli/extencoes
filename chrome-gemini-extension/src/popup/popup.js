@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  let processing = false;
+  let processing = true;
   let lastBase64 = null;
   let lastMimeType = null;
 
@@ -20,25 +20,31 @@ document.addEventListener('DOMContentLoaded', function () {
   pasteArea.focus();
   resultDiv.style.display = 'none';
 
-
-  navigator.permissions && navigator.permissions.query({ name: "clipboard-read" }).then(permissionStatus => {
-    if (permissionStatus.state === "granted" || permissionStatus.state === "prompt") {
-      navigator.clipboard.read && navigator.clipboard.read().then(async items => {
-
-        resultDiv.style.display = 'block';
-        for (const item of items) {
-          if (item.types.includes('image/png')) {
-            const blob = await item.getType('image/png');
-            processImage(blob);
-            break;
+  if (navigator.permissions && navigator.clipboard && navigator.clipboard.read) {
+    navigator.permissions.query({ name: "clipboard-read" }).then(permissionStatus => {
+      if (permissionStatus.state === "granted") {
+        navigator.clipboard.read().then(async (items) => {
+          resultDiv.style.display = 'block';
+          for (const item of items) {
+            if (item.types.includes('image/png')) {
+              const blob = await item.getType('image/png');
+              await processImage(blob);
+              break;
+            }
           }
-        }
-      }).catch(() => {
-        // Falha silenciosa, usuário pode colar manualmente se necessário
-      });
-    }
-    // Se "denied", não há como contornar, só resta aguardar o usuário colar manualmente.
-  });
+        }).catch(() => {
+          resultDiv.innerText = "Erro ao ler a área de transferência.";
+          reloadButton.style.display = lastBase64 && lastMimeType ? 'inline-block' : 'none';
+          processing = false;
+        });
+      }
+      else {
+        resultDiv.innerText = "Permissão para acessar a área de transferência negada.";
+        reloadButton.style.display = lastBase64 && lastMimeType ? 'inline-block' : 'none';
+        processing = false;
+      }
+    });
+  }
 
   // Também processa se o usuário colar manualmente (Ctrl+V)
   pasteArea.addEventListener('paste', async (event) => {
