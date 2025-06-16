@@ -290,7 +290,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }, timeout);
     }
   }
-
-  // Mensagem inicial para o usuário
-  showUserMessage("Nenhuma imagem foi colada ainda.", "warning");
 });

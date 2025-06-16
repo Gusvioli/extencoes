@@ -1,44 +1,41 @@
-# Chrome Gemini Extension
+# Resolva Questões por Imagem
 
-This project is a Chrome extension that integrates with Google's Gemini API to capture screenshots of selected areas on the screen and provide descriptions of the captured content.
+Esta extensão para Google Chrome utiliza inteligência artificial para ajudar estudantes e profissionais a obter respostas automáticas a partir de imagens de questões. Basta colar, arrastar ou capturar uma imagem de uma questão (prova, exercício, tarefa, etc.) na janela da extensão e, em poucos segundos, você recebe a resposta detalhada.
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 chrome-gemini-extension
 ├── src
-│   ├── background.js        # Background script managing global events and communication
-│   ├── content.js          # Content script for screen selection and screenshot capture
+│   ├── background.js        # Script de background para eventos globais e comunicação
+│   ├── content.js           # Script de conteúdo para interação com páginas
 │   ├── popup
-│   │   ├── popup.html      # HTML structure for the popup interface
-│   │   ├── popup.js        # Logic for user interaction and screenshot capture
-│   │   └── popup.css       # Styles for the popup interface
-│   ├── gemini
-│   │   └── api.js          # Integration with Google's Gemini API
-│   └── utils
-│       └── screenshot.js    # Utility functions for screenshot capture and image manipulation
-├── manifest.json           # Manifest file defining permissions and settings
-└── README.md               # Documentation for installation and usage
+│   │   ├── popup.html       # Estrutura HTML da interface popup
+│   │   ├── popup.js         # Lógica de interação do usuário e processamento de imagem
+│   │   └── popup.css        # Estilos da interface popup
+├── icons/                   # Ícones da extensão
+├── manifest.json            # Manifesto com permissões e configurações
+└── README.md                # Documentação de instalação e uso
 ```
 
-## Installation
+## Instalação
 
-1. Clone the repository to your local machine.
-2. Open Chrome and navigate to `chrome://extensions/`.
-3. Enable "Developer mode" in the top right corner.
-4. Click on "Load unpacked" and select the `chrome-gemini-extension` directory.
+1. Clone o repositório para sua máquina local.
+2. Abra o Chrome e acesse `chrome://extensions/`.
+3. Ative o "Modo do desenvolvedor" no canto superior direito.
+4. Clique em "Carregar sem compactação" e selecione a pasta `chrome-gemini-extension`.
 
-## Usage
+## Como Usar
 
-1. Click on the extension icon in the Chrome toolbar.
-2. Use the popup interface to select the area of the screen you want to capture.
-3. The extension will take a screenshot of the selected area and send it to the Gemini API.
-4. The description of the content in the screenshot will be displayed in the popup.
+1. Clique no ícone da extensão na barra de ferramentas do Chrome.
+2. Cole, arraste ou capture uma imagem de uma questão na área indicada.
+3. Aguarde alguns segundos enquanto a inteligência artificial processa a imagem.
+4. Veja a resposta gerada automaticamente na tela.
 
-## Contributing
+## Contribuição
 
-Feel free to submit issues or pull requests for improvements or bug fixes.
+Sinta-se à vontade para enviar issues ou pull requests com melhorias ou correções de bugs.
 
-## License
+## Licença
 
-This project is licensed under the MIT License.
+Este projeto está licenciado sob a Licença MIT.
