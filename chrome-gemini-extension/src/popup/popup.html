@@ -7,18 +7,12 @@
   </head>
   <body>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <div style="display: flex; justify-content: flex-end;">
-      <button id="pinButton" title="Fixar janela e processar imagem" style="background:none;border:none;cursor:pointer;">
-      <img src="../../icons/push-pin_16984740.png" alt="Fixar" style="width:28px;height:28px;">
-      </button>
-    </div>
       <div
         id="pasteArea"
         tabindex="0"
         style="border: 1px dashed #aaa; padding: 10px; margin-bottom: 10px"
       >
-        Pressione PrintScreen e depois abra esta janela e cole a imagem aqui. A
-        imagem será processada automaticamente.
+        Cole ou clique aqui para inserir o printscreen. A imagem será processada automaticamente.
       </div>
       <div>
         <button
@@ -39,6 +33,15 @@
       style="max-width: 100%; display: none; margin-bottom: 10px"
     />
     <div id="result"></div>
+    <div
+      id="contextMenu"
+      style="display:none;position:absolute;z-index:1000;background:#fff;border:1px solid #ddd;border-radius:8px;box-shadow:0 2px 8px #0001;padding:6px 0;min-width:140px;"
+    >
+      <div id="pasteImageOption" style="padding:8px 18px;cursor:pointer;">
+        Colar imagem
+      </div>
+    </div>
+    <div id="userMessage" style="display:none"></div>
     <script src="popup.js"></script>
   </body>
 </html>

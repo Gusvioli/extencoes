@@ -73,6 +73,74 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // Permite enviar a imagem ao clicar no texto da área de colagem
+  pasteArea.addEventListener('click', async () => {
+    if (
+      !processing &&
+      previewImage &&
+      previewImage.src &&
+      previewImage.style.display !== 'none' &&
+      lastBase64 &&
+      lastMimeType
+    ) {
+      processing = true;
+      resultDiv.style.display = 'block';
+      resultDiv.innerText = "Carregando...";
+      reloadButton.style.display = 'none';
+      const description = await describeImageWithGemini(lastBase64, lastMimeType);
+      resultDiv.innerText = description;
+      processing = false;
+    } else if (!previewImage.src || previewImage.style.display === 'none') {
+      showUserMessage("Nenhuma imagem foi colada ainda.", "warning");
+    }
+  });
+
+  // MENU DE CONTEXTO PERSONALIZADO PARA COLAR IMAGEM
+  const contextMenu = document.getElementById('contextMenu');
+  const pasteImageOption = document.getElementById('pasteImageOption');
+
+  pasteArea.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    contextMenu.style.display = 'block';
+    contextMenu.style.left = `${e.pageX}px`;
+    contextMenu.style.top = `${e.pageY}px`;
+  });
+
+  document.addEventListener('click', (e) => {
+    if (contextMenu.style.display === 'block') {
+      contextMenu.style.display = 'none';
+    }
+  });
+
+  pasteImageOption.addEventListener('click', async () => {
+    contextMenu.style.display = 'none';
+    // Tenta ler a imagem da área de transferência
+    if (navigator.clipboard && navigator.clipboard.read) {
+      try {
+        const items = await navigator.clipboard.read();
+        let found = false;
+        for (const item of items) {
+          if (item.types.includes('image/png')) {
+            const blob = await item.getType('image/png');
+            await processImage(blob);
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          resultDiv.style.display = 'block';
+          resultDiv.innerText = "Nenhuma imagem encontrada na área de transferência.";
+        }
+      } catch (err) {
+        resultDiv.style.display = 'block';
+        resultDiv.innerText = "Erro ao acessar a área de transferência.";
+      }
+    } else {
+      resultDiv.style.display = 'block';
+      resultDiv.innerText = "Seu navegador não suporta colar imagens dessa forma.";
+    }
+  });
+
   async function processImage(file) {
     try {
       if (file.size > 2 * 1024 * 1024) {
@@ -97,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const description = await describeImageWithGemini(cleanBase64, mimeType);
       resultDiv.innerText = description;
     } catch (error) {
-      resultDiv.innerText = "Erro ao processar imagem colada.";
+      resultDiv.innerText = "Erro ao processar a imagem.";
       reloadButton.style.display = lastBase64 && lastMimeType ? 'inline-block' : 'none';
     }
     processing = false;
@@ -167,6 +235,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   async function describeImageWithGemini(base64, mimeType) {
+    resultDiv.style.display = 'block';
+    resultDiv.innerText = "Carregando..."; // Mostra mensagem de carregando
+    reloadButton.style.display = 'none';
+
     const GEMINI_API_KEY = "AIzaSyADthtU2RfVtg9NfNC7kGRw1cY0JxXT0xI";
     const endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY;
 
@@ -205,4 +277,20 @@ document.addEventListener('DOMContentLoaded', function () {
       return "Erro ao conectar com o Gemini.";
     }
   }
+
+  function showUserMessage(message, type = "info", timeout = 3500) {
+    const msgDiv = document.getElementById("userMessage");
+    msgDiv.className = "";
+    msgDiv.classList.add(type);
+    msgDiv.innerText = message;
+    msgDiv.style.display = "block";
+    if (timeout > 0) {
+      setTimeout(() => {
+        msgDiv.style.display = "none";
+      }, timeout);
+    }
+  }
+
+  // Mensagem inicial para o usuário
+  showUserMessage("Nenhuma imagem foi colada ainda.", "warning");
 });
