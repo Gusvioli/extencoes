@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "description": "Cole ou arraste uma imagem de uma questão e receba a resposta automaticamente usando inteligência artificial.",
   "icons": {
-    "16": "icons/cloud-computing_6843085.png",
-    "32": "icons/cloud-computing_6843085.png",
-    "48": "icons/cloud-computing_6843085.png",
-    "128": "icons/cloud-computing_6843085.png"
+    "16": "icons/digital-art_10817272.png",
+    "32": "icons/digital-art_10817272.png",
+    "48": "icons/digital-art_10817272.png",
+    "128": "icons/digital-art_10817272.png"
   },
   "permissions": [
     "clipboardRead",
@@ -19,10 +19,10 @@
   "action": {
     "default_popup": "src/popup/popup.html",
     "default_icon": {
-      "16": "icons/cloud-computing_6843085.png",
-      "32": "icons/cloud-computing_6843085.png",
-      "48": "icons/cloud-computing_6843085.png",
-      "128": "icons/cloud-computing_6843085.png"
+      "16": "icons/digital-art_10817272.png",
+      "32": "icons/digital-art_10817272.png",
+      "48": "icons/digital-art_10817272.png",
+      "128": "icons/digital-art_10817272.png"
     }
   },
   "content_security_policy": {

@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }).catch(() => {
           resultDiv.innerText = "Erro ao ler a área de transferência.";
-          reloadButton.style.display = lastBase64 && lastMimeType ? 'inline-block' : 'none';
           processing = false;
         });
       }
@@ -198,6 +197,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Adicione o event listener do botão de configurações aqui, apenas uma vez!
+  const settingsButton = document.getElementById('settingsButton');
+  if (settingsButton) {
+    settingsButton.addEventListener('click', () => {
+      window.location.href = 'settings.html';
+    });
+  }
+
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -236,17 +243,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function describeImageWithGemini(base64, mimeType) {
     resultDiv.style.display = 'block';
-    resultDiv.innerText = "Carregando..."; // Mostra mensagem de carregando
-    reloadButton.style.display = 'none';
+    resultDiv.innerText = "Carregando...";
 
-    const GEMINI_API_KEY = "AIzaSyADthtU2RfVtg9NfNC7kGRw1cY0JxXT0xI";
-    const endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY;
+    // Busca configurações do usuário
+    const { geminiApiToken, geminiModel, customPrompt } = await new Promise(resolve =>
+      chrome.storage.sync.get(['geminiApiToken', 'geminiModel', 'customPrompt'], resolve)
+    );
+    const apiKey = geminiApiToken || "AIzaSyADthtU2RfVtg9NfNC7kGRw1cY0JxXT0xI";
+    const model = geminiModel || "gemini-2.0-flash";
+    const prompt = customPrompt && customPrompt.length > 0
+      ? customPrompt
+      : "Analise cuidadosamente a imagem fornecida e extraia todas as informações visuais e textuais possíveis. Descreva em detalhes tudo o que for identificado, incluindo textos, números, gráficos, tabelas, símbolos, elementos visuais, contexto, estrutura e qualquer outro dado relevante presente na imagem. Se possível, organize as informações de forma clara e estruturada, destacando pontos importantes e explicando o significado de cada elemento. Responda sempre em português do Brasil.";
+
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
     const body = {
       contents: [
         {
           parts: [
-            { text: "Resolva essa questão para mim em português" },
+            { text: prompt },
             {
               inlineData: {
                 mimeType: mimeType,
@@ -267,13 +282,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const data = await response.json();
       if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
-        reloadButton.style.display = 'inline-block';
         return "Não foi possível descrever a imagem.";
       }
-      reloadButton.style.display = 'none';
       return data.candidates[0].content.parts[0].text;
     } catch (e) {
-      reloadButton.style.display = 'inline-block';
       return "Erro ao conectar com o Gemini.";
     }
   }

@@ -1,6 +1,6 @@
 :root {
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
+  --primary: #000000;
+  --primary-hover: #02011d;
   --success: #22c55e;
   --success-hover: #16a34a;
   --danger: #ef4444;
@@ -70,6 +70,7 @@ button:disabled {
   transition: border-color 0.18s, background 0.18s;
   outline: none;
   cursor: pointer;
+  width: 90%;
 }
 
 #pasteArea:focus {

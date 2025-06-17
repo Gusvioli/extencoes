@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #f7f8fa;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings-container {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.04);
+  padding: 32px 28px 24px 28px;
+  width: 96%;
+  max-width: 370px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.settings-container h1 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  color: #222;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+label {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 6px;
+  display: block;
+  font-weight: 500;
+}
+input[type="text"], select {
+  width: 90%;
+  padding: 10px 12px;
+  border: 1.5px solid #e0e3e8;
+  border-radius: 7px;
+  font-size: 1rem;
+  background: #f9fafb;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  transition: border 0.2s;
+  outline: none;
+}
+input[type="text"]:focus, select:focus {
+  border-color: #6c63ff;
+  background: #fff;
+}
+textarea#customPrompt {
+  width: 90%;
+  padding: 10px 12px;
+  border: 1.5px solid #e0e3e8;
+  border-radius: 7px;
+  font-size: 1rem;
+  background: #f9fafb;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  resize: vertical;
+  min-height: 80px;
+  transition: border 0.2s;
+  outline: none;
+}
+textarea#customPrompt:focus {
+  border-color: #6c63ff;
+  background: #fff;
+}
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+button[type="submit"] {
+  background: #6c63ff;
+  color: #fff;
+  margin-right: 4px;
+}
+button[type="submit"]:hover {
+  background: #574fd6;
+}
+#backButton {
+  background: #f0f1f6;
+  color: #444;
+  margin-left: 4px;
+}
+#backButton:hover {
+  background: #e0e3e8;
+}
+#settingsMessage {
+  text-align: center;
+  font-size: 0.98rem;
+  margin-top: 8px;
+  min-height: 20px;
+}
+@media (max-width: 400px) {
+  .settings-container {
+    padding: 18px 6px 14px 6px;
+  }
+}
