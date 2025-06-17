@@ -1,324 +1,201 @@
-    document.addEventListener('DOMContentLoaded', function () {
-    const inputElement = document.getElementById('valorASerApagado');
-    const buttonElementLimpar = document.getElementById('limpar');
-    const buttonElementLimparAll = document.getElementById('limparAll');
-    const resultadoElement = document.getElementById('resultado');
+document.addEventListener('DOMContentLoaded', async () => {
+  // Elementos
+  const inputElement = document.getElementById('valorASerApagado');
+  const buttonLimpar = document.getElementById('limpar');
+  const buttonLimparAll = document.getElementById('limparAll');
+  const resultadoElement = document.getElementById('resultado');
+  const resultadoPergunta = document.getElementById('resultadoPergunta');
+  const selectHistory = document.getElementById('select-History');
+  const selectHistoryLabel = document.getElementById('labe-select-History');
+  const selectH2Title = document.getElementById('traduzir-titulo');
+  const selectLimpar = document.getElementById('limpar');
+  const selectLimparAll = document.getElementById('limparAll');
+  const selectDescricaoSelecione = document.getElementById('labe-select-History');
+  const selectValorASerApagado = document.getElementById('valorASerApagado');
+  const selectDesenvolvidoPor = document.getElementById('desenvolvidopor');
+  const selectLinkGusvioli = document.getElementById('linkGusvioli');
+  const selectBrasil = document.getElementById('brasil');
+  const selectEUA = document.getElementById('eua');
+  const selectEspanha = document.getElementById('espanha');
 
-    const selectHistory = document.getElementById('select-History');
-    const selectHistoryLabel = document.getElementById('labe-select-History');
-    
-    const selectH2Title = document.getElementById('traduzir-titulo');
-    const selectLimpar = document.getElementById('limpar');
-    const selectLimparAll = document.getElementById('limparAll');
-    const selectdescricaoSelecione = document.getElementById('labe-select-History');
-    const selectvalorASerApagado = document.getElementById('valorASerApagado');
-    const selectdesenvolvidopor = document.getElementById('desenvolvidopor');
-    const selectlinkGusvioli = document.getElementById('linkGusvioli');
-    const selectInterrogacao = document.getElementById('interrogacao');
+  resultadoElement.style.display = 'none';
+  resultadoPergunta.style.display = 'none';
 
-    const selectBrasil = document.getElementById('brasil');
-    const selectEUA = document.getElementById('eua');
-    const selectEspanha = document.getElementById('espanha');
+  // Traduções
+  let translations = {};
+  try {
+    const response = await fetch('traducao.json');
+    translations = await response.json();
+  } catch (err) {
+    resultadoElement.style.display = 'block';
+    resultadoElement.textContent = "Erro ao carregar traduções.";
+  }
 
+  // Idioma padrão
+  if (!localStorage.getItem('traduzir')) {
+    localStorage.setItem('traduzir', 'pt-br');
+  }
 
-    const data = new Promise((resolve, reject) => {
-        fetch('traducao.json')
-            .then(response => {
-                return response.json();
-            })
-            .then(jsonData => {
-                resolve(jsonData);
-            })
-            .catch(err => {
-                reject(err);
-            });
+  // Atualiza idioma visual
+  const updateLanguage = (lang) => {
+    selectH2Title.innerText = translations[lang].titulo;
+    selectLimpar.innerText = translations[lang].limpar;
+    selectLimpar.title = translations[lang].limparTitle;
+    selectLimparAll.innerText = translations[lang].limparAll;
+    selectLimparAll.title = translations[lang].limparAllTitle;
+    selectDescricaoSelecione.innerText = translations[lang].descricaoSelecione;
+    selectValorASerApagado.placeholder = translations[lang].placeholder;
+    selectValorASerApagado.title = translations[lang].placeholderTitle;
+    selectDesenvolvidoPor.innerText = translations[lang].desenvolvidopor;
+    selectDesenvolvidoPor.title = translations[lang].desenvolvidoporTitle;
+    selectLinkGusvioli.title = translations[lang].desenvolvidoporTitle;
+  };
+
+  updateLanguage(localStorage.getItem('traduzir'));
+
+  // Troca de idioma
+  const setLanguage = (lang) => {
+    localStorage.setItem('traduzir', lang);
+    updateLanguage(lang);
+
+    // Atualize visualmente os botões de idioma, se desejar
+    [selectBrasil, selectEUA, selectEspanha].forEach(btn => {
+      btn.style.opacity = '0.5';
+      btn.style.cursor = 'pointer';
+      btn.style.pointerEvents = 'auto';
     });
+    if (lang === 'pt-br') selectBrasil.style.opacity = '1';
+    if (lang === 'en') selectEUA.style.opacity = '1';
+    if (lang === 'es') selectEspanha.style.opacity = '1';
+  };
 
-    localStorage.getItem('traduzir') === 'pt-br' ? selectBrasil.style.opacity = '1' : selectBrasil.style.opacity = '0.5';
-    localStorage.getItem('traduzir') === 'en' ? selectEUA.style.opacity = '1' : selectEUA.style.opacity = '0.5';
-    localStorage.getItem('traduzir') === 'es' ? selectEspanha.style.opacity = '1' : selectEspanha.style.opacity = '0.5';
+  selectBrasil.addEventListener('click', () => setLanguage('pt-br'));
+  selectEUA.addEventListener('click', () => setLanguage('en'));
+  selectEspanha.addEventListener('click', () => setLanguage('es'));
 
-    if (!localStorage.getItem('traduzir')) {
-        localStorage.setItem('traduzir', 'pt-br');
+  // Preenche o select com o histórico
+  chrome.history.search({ text: '', maxResults: 1000 }, (results) => {
+    selectHistory.innerHTML = '';
+    results.forEach(item => {
+      const option = document.createElement('option');
+      option.textContent = item.url.length > 45 ? item.url.slice(0, 45) + '...' : item.url;
+      option.value = item.url;
+      option.title = item.url;
+      selectHistory.appendChild(option);
+    });
+  });
+
+  // Ao clicar em um item do select, preenche o input
+  selectHistory.addEventListener('change', (e) => {
+    inputElement.value = e.target.value;
+  });
+
+  // Limpar item específico
+  buttonLimpar.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const valorDigitado = inputElement.value.trim();
+    const lang = localStorage.getItem('traduzir');
+    if (!valorDigitado) {
+    resultadoElement.style.display = 'block';
+      resultadoElement.textContent = translations[lang].erroNenumValorInserido;
+      return;
     }
-
-    selectBrasil.addEventListener('click', function (e) {
-        localStorage.setItem('traduzir', 'pt-br');
-        selectBrasil.style.opacity = '1';
-        selectBrasil.style.cursor = 'pointer';
-        selectBrasil.style.pointerEvents = 'all';
-        selectEUA.style.opacity = '0.5';
-        selectEUA.style.cursor = 'not-allowed';
-        selectEUA.style.pointerEvents = 'none';
-        selectEspanha.style.opacity = '0.5';
-        selectEspanha.style.cursor = 'not-allowed';
-        selectEspanha.style.pointerEvents = 'none';
-    });
-
-    selectEUA.addEventListener('click', function (e) {
-        localStorage.setItem('traduzir', 'en');
-        selectEUA.style.opacity = '1';
-        selectEUA.style.cursor = 'pointer';
-        selectEUA.style.pointerEvents = 'all';
-        selectBrasil.style.opacity = '0.5';
-        selectBrasil.style.cursor = 'not-allowed';
-        selectBrasil.style.pointerEvents = 'none';
-        selectEspanha.style.opacity = '0.5';
-        selectEspanha.style.cursor = 'not-allowed';
-        selectEspanha.style.pointerEvents = 'none';
-    });
-
-    selectEspanha.addEventListener('click', function (e) {
-        localStorage.setItem('traduzir', 'es');
-        selectEspanha.style.opacity = '1';
-        selectEspanha.style.cursor = 'pointer';
-        selectEspanha.style.pointerEvents = 'all';
-        selectBrasil.style.opacity = '0.5';
-        selectBrasil.style.cursor = 'not-allowed';
-        selectBrasil.style.pointerEvents = 'none';
-        selectEUA.style.opacity = '0.5';
-        selectEUA.style.cursor = 'not-allowed';
-        selectEUA.style.pointerEvents = 'none';
-    });
-
-    document.getElementById('brasil').addEventListener('click', function() {
-        chrome.runtime.reload();
-    });
-
-    document.getElementById('eua').addEventListener('click', function() {
-        chrome.runtime.reload();
-    });
-
-    document.getElementById('espanha').addEventListener('click', function() {
-        chrome.runtime.reload();
-    });
-    
-    data.then((jsonData) => {
-        selectH2Title.innerText = jsonData[localStorage.getItem('traduzir')].titulo;
-        selectLimpar.innerText = jsonData[localStorage.getItem('traduzir')].limpar;
-        selectLimpar.title = jsonData[localStorage.getItem('traduzir')].limparTitle;
-        selectLimparAll.innerText = jsonData[localStorage.getItem('traduzir')].limparAll;
-        selectLimparAll.title = jsonData[localStorage.getItem('traduzir')].limparAllTitle;
-        selectdescricaoSelecione.innerText = jsonData[localStorage.getItem('traduzir')].descricaoSelecione;
-        selectvalorASerApagado.placeholder = jsonData[localStorage.getItem('traduzir')].placeholder;
-        selectvalorASerApagado.title = jsonData[localStorage.getItem('traduzir')].placeholderTitle;
-        selectdesenvolvidopor.innerText = jsonData[localStorage.getItem('traduzir')].desenvolvidopor;
-        selectdesenvolvidopor.title = jsonData[localStorage.getItem('traduzir')].desenvolvidoporTitle;
-        selectInterrogacao.title = jsonData[localStorage.getItem('traduzir')].interrogacaoTitle;
-        selectlinkGusvioli.title = jsonData[localStorage.getItem('traduzir')].desenvolvidoporTitle;
-    });   
-    
-
-    chrome.history.search({text: '', maxResults: 1000}, (results) => {
-        for (let i = 0; i < results.length; i+=1) {
-            const option = document.createElement('option', { id: 'option' });
-            selectHistory.appendChild(option);
-            option.textContent = results[i].url.slice(0, 45) + '...';
-            option.value = results[i].url.slice(0, 127);
-            option.style.fontSize = '14px';
-            option.style.padding = '5px';
-            option.style.margin = '5px';
-            option.style.height = 'auto';
-            option.title = results[i].url;
-        }
-    });
-
-    selectHistory.addEventListener('click', function (e) {
-        inputElement.value = e.target.value;
-    });
-
-    buttonElementLimpar.addEventListener('click', function (e) {
-        e.preventDefault();
-        const valorDigitado = inputElement.value;
-        if (valorDigitado === '') {
-            data.then((jsonData) => {
-                resultadoElement.textContent = jsonData[localStorage.getItem('traduzir')].erroNenumValorInserido;
-            });
-            return;
-        } else {
-            if(valorDigitado.length >= 128){
-                data.then((jsonData) => {
-                    resultadoElement.textContent = jsonData[localStorage.getItem('traduzir')].erroLimite128;
-                });
-            } else {
-                chrome.history.search({ text: valorDigitado }, function (results) {
-                    if (results.length === 0) {
-
-                        data.then((jsonData) => {
-                            resultadoElement.textContent = `${jsonData[localStorage.getItem('traduzir')].ItemNaoEncontrado[0]}"${valorDigitado}"${jsonData[localStorage.getItem('traduzir')].ItemNaoEncontrado[1]}`;
-                        });
-                    } else {
-                        if (!chrome.runtime.lastError) {
-                            for (let i = 0; i < results.length; i++) {
-                                chrome.history.deleteUrl({ url: results[i].url });
-                            }
-                            data.then((jsonData) => {
-                                resultadoElement.textContent = `${jsonData[localStorage.getItem('traduzir')].itemHistorico[0]}'${valorDigitado}' ${jsonData[localStorage.getItem('traduzir')].itemHistorico[1]}${results.length} ${jsonData[localStorage.getItem('traduzir')].itemHistorico[2]}`;
-                            });
-                            inputElement.value = '';
-                        }
-                    }
-                });
-            }
-        }
-    });
-
-    buttonElementLimparAll.addEventListener('click', function (e) {
-        e.preventDefault();
+    if (valorDigitado.length >= 128) {
+    resultadoElement.style.display = 'block';
+      resultadoElement.textContent = translations[lang].erroLimite128;
+      return;
+    }
+    chrome.history.search({ text: valorDigitado }, (results) => {
+      if (results.length === 0) {
+    resultadoElement.style.display = 'block';
+        resultadoElement.textContent = `${translations[lang].ItemNaoEncontrado[0]}"${valorDigitado}"${translations[lang].ItemNaoEncontrado[1]}`;
+      } else {
+    resultadoElement.style.display = 'block';
+        results.forEach(item => chrome.history.deleteUrl({ url: item.url }));
+        resultadoElement.textContent = `${translations[lang].itemHistorico[0]}'${valorDigitado}' ${translations[lang].itemHistorico[1]}${results.length} ${translations[lang].itemHistorico[2]}`;
         inputElement.value = '';
-
-        selectHistory.style.opacity = '0.5';
-        selectHistory.style.cursor = 'not-allowed';
-        selectHistory.style.pointerEvents = 'none';
-
-        selectHistoryLabel.style.opacity = '0.5';
-        selectHistoryLabel.style.cursor = 'not-allowed';
-        selectHistoryLabel.style.pointerEvents = 'none';
-
-        buttonElementLimparAll.style.opacity = '0.5';
-        buttonElementLimparAll.style.cursor = 'not-allowed';
-        buttonElementLimparAll.style.pointerEvents = 'none';
-
-        buttonElementLimpar.style.opacity = '0.5';
-        buttonElementLimpar.style.cursor = 'not-allowed';
-        buttonElementLimpar.style.pointerEvents = 'none';
-
-        inputElement.style.opacity = '0.5';
-        inputElement.style.cursor = 'not-allowed';
-        inputElement.style.pointerEvents = 'none';
-
-        const valorDigitado = inputElement.value;
-
-        chrome.history.search({ text: valorDigitado, maxResults: 1000 }, function (results) {
-            if (results.length === 0) {
-                data.then((jsonData) => {
-                    resultadoElement.textContent = jsonData[localStorage.getItem('traduzir')].erroNenhumHistoricoEncontrado;
-                });
-
-                selectHistory.style.opacity = '1';
-                selectHistory.style.cursor = 'pointer';
-                selectHistory.style.pointerEvents = 'all';
-
-                selectHistoryLabel.style.opacity = '1';
-                selectHistoryLabel.style.cursor = 'pointer';
-                selectHistoryLabel.style.pointerEvents = 'all';
-
-                buttonElementLimparAll.style.opacity = '1';
-                buttonElementLimparAll.style.cursor = 'pointer';
-                buttonElementLimparAll.style.pointerEvents = 'all';
-
-                buttonElementLimpar.style.opacity = '1';
-                buttonElementLimpar.style.cursor = 'pointer';
-                buttonElementLimpar.style.pointerEvents = 'all';
-
-                inputElement.style.opacity = '1';
-                inputElement.style.cursor = 'text';
-                inputElement.style.pointerEvents = 'all';
-
-            } else {
-
-                data.then((jsonData) => {
-                    resultadoElement.textContent = jsonData[localStorage.getItem('traduzir')].tamHistorico + results.length + ' iten(s).';
-                });
-                const pergunta = document.createElement('div', { id: 'pergunta' });
-                data.then((jsonData) => {
-                    pergunta.textContent = jsonData[localStorage.getItem('traduzir')].temCertezaDeletarHistorico;
-                });
-                document.body.appendChild(pergunta);
-                pergunta.style.textAlign = 'center';
-                pergunta.style.marginTop = '10px';
-                pergunta.style.marginBottom = '10px';
-                pergunta.style.fontSize = '14px';
-                pergunta.style.border = '2px dashed #ccc';
-                pergunta.style.padding = '10px';
-                pergunta.style.display = 'flex';
-                pergunta.style.justifyContent = 'center';
-                pergunta.style.alignItems = 'center';
-                pergunta.style.flexDirection = 'row wrap';                
-
-                data.then((jsonData) => {
-                    const createButtonYes = document.createElement('button',
-                    { id: 'confirmar' });
-                    createButtonYes.textContent = jsonData[localStorage.getItem('traduzir')].comfirmarSim;
-
-                    pergunta.appendChild(createButtonYes);
-                    createButtonYes.style.alignItems = 'center';
-                    createButtonYes.style.marginRight = '10px';
-                    createButtonYes.style.marginTop = '10px';
-                    createButtonYes.style.fontSize = '16px';
-
-                    createButtonYes.addEventListener('click', function (e) {
-                        chrome.history.deleteAll(function () {
-                            if (!chrome.runtime.lastError) {
-                                pergunta.remove();
-    
-                                selectHistory.style.opacity = '1';
-                                selectHistory.style.cursor = 'pointer';
-                                selectHistory.style.pointerEvents = 'all';
-    
-                                selectHistoryLabel.style.opacity = '1';
-                                selectHistoryLabel.style.cursor = 'pointer';
-                                selectHistoryLabel.style.pointerEvents = 'all';
-    
-                                buttonElementLimparAll.style.opacity = '1';
-                                buttonElementLimparAll.style.cursor = 'pointer';
-                                buttonElementLimparAll.style.pointerEvents = 'all';
-    
-                                buttonElementLimpar.style.opacity = '1';
-                                buttonElementLimpar.style.cursor = 'pointer';
-                                buttonElementLimpar.style.pointerEvents = 'all';
-    
-                                inputElement.style.opacity = '1';
-                                inputElement.style.cursor = 'text';
-                                inputElement.style.pointerEvents = 'all';
-    
-    
-                                data.then((jsonData) => {
-                                    resultadoElement.textContent = jsonData[localStorage.getItem('traduzir')].excluzaoOk;
-                                });
-                            }
-                        });
-                    });
-                });
-
-                data.then((jsonData) => {
-
-                    const createButtonNo = document.createElement('button',
-                        { id: 'noConfirmar' });
-                    createButtonNo.textContent = jsonData[localStorage.getItem('traduzir')].comfirmarNao;
-                    pergunta.appendChild(createButtonNo);
-                    createButtonNo.style.alignItems = 'center';
-                    createButtonNo.style.marginRight = '10px';
-                    createButtonNo.style.marginTop = '10px';
-                    createButtonNo.style.fontSize = '16px';
-    
-                    createButtonNo.addEventListener('click', function (e) {
-                        pergunta.remove();
-    
-                        selectHistory.style.opacity = '1';
-                        selectHistory.style.cursor = 'pointer';
-                        selectHistory.style.pointerEvents = 'all';
-    
-                        selectHistoryLabel.style.opacity = '1';
-                        selectHistoryLabel.style.cursor = 'pointer';
-                        selectHistoryLabel.style.pointerEvents = 'all';
-    
-                        buttonElementLimparAll.style.opacity = '1';
-                        buttonElementLimparAll.style.cursor = 'pointer';
-                        buttonElementLimparAll.style.pointerEvents = 'all';
-    
-                        buttonElementLimpar.style.opacity = '1';
-                        buttonElementLimpar.style.cursor = 'pointer';
-                        buttonElementLimpar.style.pointerEvents = 'all';
-    
-                        inputElement.style.opacity = '1';
-                        inputElement.style.cursor = 'text';
-                        inputElement.style.pointerEvents = 'all';
-                        resultadoElement.textContent = '';
-                    });
-                });
-
-            }
-        });
+      }
     });
+  });
+
+  // Limpar todo o histórico
+  buttonLimparAll.addEventListener('click', (e) => {
+    e.preventDefault();
+    const lang = localStorage.getItem('traduzir');
+    resultadoElement.style.display = 'none';
+    resultadoPergunta.innerHTML = `
+      <div class="pergunta-confirmacao">
+        <span>${translations[lang].temCertezaDeletarHistorico}</span>
+        <button id="confirmar">${translations[lang].comfirmarSim}</button>
+        <button id="noConfirmar">${translations[lang].comfirmarNao}</button>
+      </div>
+    `;
+    document.getElementById('confirmar').onclick = () => {
+      chrome.history.deleteAll(() => {
+      resultadoElement.style.display = 'none';
+      resultadoPergunta.style.display = 'none';
+        resultadoElement.textContent = translations[lang].excluzaoOk;
+        resultadoPergunta.innerHTML = '';
+      });
+    };
+    document.getElementById('noConfirmar').onclick = () => {
+      resultadoElement.style.display = 'none';
+      resultadoPergunta.style.display = 'none';
+      resultadoPergunta.innerHTML = '';
+    };
+  });
+
+  // Exibir mensagem de resultado (sucesso, erro, etc)
+  function mostrarResultado(mensagem, tipo = 'info') {
+    resultadoElement.style.display = 'block';
+    resultadoElement.textContent = mensagem;
+    resultadoElement.style.color = tipo === 'erro' ? '#c62828' : '#222';
+    resultadoElement.style.background = tipo === 'erro' ? '#ffebee' : '#f1f3f7';
+  }
+
+  // Exibir confirmação antes de limpar tudo
+  function mostrarPerguntaConfirmacao(mensagem, onConfirmar, onCancelar, lang, translations) {
+  resultadoPergunta.style.display = 'block';
+    resultadoPergunta.innerHTML = `
+      <div class="pergunta-confirmacao">
+        <span>${mensagem}</span>
+        <div>
+          <button id="confirmar">${translations[lang].comfirmarSim}</button>
+          <button id="noConfirmar">${translations[lang].comfirmarNao}</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('confirmar').onclick = () => {
+      resultadoElement.style.display = 'none';
+      resultadoPergunta.style.display = 'none';
+      resultadoPergunta.innerHTML = '';
+      onConfirmar();
+    };
+    document.getElementById('noConfirmar').onclick = () => {
+      resultadoElement.style.display = 'none';
+      resultadoPergunta.style.display = 'none';
+      resultadoPergunta.innerHTML = '';
+      if (onCancelar) onCancelar();
+    };
+  }
+
+  // Exemplo de uso ao clicar em "Limpar Tudo"
+  buttonLimparAll.addEventListener('click', (e) => {
+    e.preventDefault();
+    const lang = localStorage.getItem('traduzir');
+    mostrarPerguntaConfirmacao(
+      translations[lang].temCertezaDeletarHistorico,
+      () => {
+        chrome.history.deleteAll(() => {
+          mostrarResultado(translations[lang].excluzaoOk);
+        });
+      },
+      null,
+      lang,
+      translations
+    );
+  });
+
+  // Exemplo de uso para mostrar erro
+  // mostrarResultado('Digite um valor para limpar.', 'erro');
 });

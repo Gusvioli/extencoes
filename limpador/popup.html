@@ -1,72 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <title>Limpador de histórico</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="scripts/content.js"></script>
-    </head>
-    <body>
-        <section>
-            <section class="icon-h2">
-                <img src="icon.png" alt="Icone do Limpador de histórico" />
-                <h2 id="traduzir-titulo">
-                    Limpador de histórico
-                </h2>
-                <section name="select" id="select-bandeira-tradutora">
-                    <div
-                        id="brasil">
-                        <img
-                        src="brasil.png"
-                        width="20px"
-                        alt="Traduzir para o Português" />                    
-                    </div>
-                    <div
-                        id="eua">
-                        <img
-                        src="eua.png"
-                        width="20px"
-                        alt="Traduzir para o Inglês" />
-                    </div>
-                    <div
-                        id="espanha">
-                        <img
-                        src="espanha.png"
-                        width="20px"
-                        alt="Traduzir para o Espanhol" />
-                    </div>
-                </section>
-            </section>
-            <form> 
-                <a href="" id="interrogacao" title="O item selecionado será adicionado no campo 'O que você quer limpar?'">?</a>               
-                <label for="select-History" id="labe-select-History">Selecione o item no histórico que deseja limpar
-                </label>
-                <select name="select" id="select-History">
-                </select>                        
-                <input
-                    type="text"
-                    id="valorASerApagado"
-                    placeholder="O que você quer limpar?"
-                    title="A exclusão se dará para todos os registros que contiverem o texto digitado"
-                >
-                <button id="limpar" title="Limpar todos os registros que contiverem o texto digitado">Limpar</button>        
-                <button id="limparAll" title="Limpar todos os registros">Limpar Tudo</button>    
-            </form>
-            <div id="resultado"></div>  
-            <div id="resultadoPergunta"></div>
-        </section>
-        <footer>          
-            <p>
-                2023 <span id="desenvolvidopor">Desenvolvido por</span> <a
-                id="linkGusvioli"
-                target="_blank"
-                href="https://github.com/Gusvioli"
-                title="Link para Github de Gustavo Vieira - Gusvioli"
-                >
-                Gustavo Vieira - Gusvioli</a>
-            </p>
-            
-        </footer>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Limpador de Histórico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="scripts/content.js" defer></script>
+</head>
+<body>
+    <header>
+        <img src="icon.png" alt="Ícone do Limpador" width="40" height="40" />
+        <h1 id="traduzir-titulo">Limpador de Histórico</h1>
+    </header>
+    <main>
+        <nav id="select-bandeira-tradutora" aria-label="Seleção de idioma">
+            <button id="brasil" aria-label="Português"><img src="brasil.png" alt="Bandeira do Brasil" /></button>
+            <button id="eua" aria-label="Inglês"><img src="eua.png" alt="Bandeira dos EUA" /></button>
+            <button id="espanha" aria-label="Espanhol"><img src="espanha.png" alt="Bandeira da Espanha" /></button>
+        </nav>
+        <form autocomplete="off">
+            <label for="select-History" id="labe-select-History">Selecione o item no histórico que deseja limpar</label>
+            <select name="select" id="select-History"></select>
+            <input type="text" id="valorASerApagado" placeholder="O que você quer limpar?" title="A exclusão se dará para todos os registros que contiverem o texto digitado">
+            <div class="button-group">
+                <button id="limpar" type="button" title="Limpar todos os registros que contiverem o texto digitado">Limpar</button>
+                <button id="limparAll" type="button" title="Limpar todos os registros">Limpar Tudo</button>
+            </div>
+        </form>
+        <div id="resultado" aria-live="polite"></div>
+        <div id="resultadoPergunta"></div>
+    </main>
+    <footer>
+        <p>
+            2023 <span id="desenvolvidopor">Desenvolvido por</span>
+            <a id="linkGusvioli" target="_blank" href="https://github.com/Gusvioli" title="Link para Github de Gustavo Vieira - Gusvioli">
+                Gustavo Vieira - Gusvioli
+            </a>
+        </p>
+    </footer>
+</body>
 </html>
