@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "IA para Resolução de Imagens",
   "version": "1.0.0",
-  "description": "Cole ou arraste uma imagem e receba uma resposta automaticamente usando inteligência artificial.",
+  "description": "Cole uma imagem e receba uma resposta automaticamente usando inteligência artificial.",
   "icons": {
     "16": "icons/digital-art_10817272.png",
     "32": "icons/digital-art_10817272.png",
