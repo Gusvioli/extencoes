@@ -302,4 +302,5 @@ document.addEventListener('DOMContentLoaded', function () {
       }, timeout);
     }
   }
+  resultDiv.style.display = 'none';
 });

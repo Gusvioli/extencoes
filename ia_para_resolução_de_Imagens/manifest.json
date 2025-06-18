@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Resolva Questões por Imagem",
+  "name": "IA para Resolução de Imagens",
   "version": "1.0.0",
   "description": "Cole ou arraste uma imagem e receba uma resposta automaticamente usando inteligência artificial.",
   "icons": {

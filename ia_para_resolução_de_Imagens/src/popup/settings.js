@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   backButton.addEventListener('click', () => {
     chrome.storage.local.set({ hideResultDiv: true }, () => {
+      window.close();
       window.location.href = 'popup.html';
     });
   });
