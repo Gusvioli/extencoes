@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Impressão Delivery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .print-box {
+      border: 2px solid #e5e7eb;
+      background: #f8fafc;
+      padding: 8px 12px;
+      width: 260px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+    .codigo {
+      background: #222;
+      color: #60a5fa;
+      font-size: 2.2rem;
+      font-weight: bold;
+      padding: 4px 0;
+      text-align: center;
+      margin-bottom: 6px;
+      border-radius: 2px;
+    }
+    .ifood {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: right;
+      margin-bottom: 2px;
+    }
+    .data {
+      background: #e5e7eb;
+      font-size: 1rem;
+      text-align: right;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .telefone {
+      font-size: 1.7rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .nome {
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 8px;
+      font-family: 'Arial Black', Arial, sans-serif;
+    }
+    .volumes {
+      background: #222;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 3px 0;
+      border-radius: 2px;
+    }
+    @media print {
+      body {
+        background: #fff !important;
+      }
+      .print-box {
+        box-shadow: none !important;
+        border: 2px solid #222 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-box">
+    <div class="codigo">5316</div>
+    <div class="ifood">Ifood</div>
+    <div class="data">9/08/2025 10:59</div>
+    <div class="telefone">610776418</div>
+    <div class="nome">Gustavo Vieira de Oliveira</div>
+    <div class="volumes">4 Volumes – 2F / 2N</div>
+  </div>
+  <button id="imprimir-delivery">Imprimir Etiqueta</button>
+  <script>
+    window.onload = () => window.print();
+  </script>
+</body>
+</html>

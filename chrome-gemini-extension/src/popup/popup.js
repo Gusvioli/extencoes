@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const { geminiApiToken, geminiModel, customPrompt } = await new Promise(resolve =>
       chrome.storage.sync.get(['geminiApiToken', 'geminiModel', 'customPrompt'], resolve)
     );
-    const apiKey = geminiApiToken || "";
+    const apiKey = geminiApiToken || "AIzaSyD7ZfRIHu8ant9ztajuMtnvKROGkbSmUfQ";
     const model = geminiModel || "gemini-2.0-flash";
     const prompt = customPrompt && customPrompt.length > 0
       ? customPrompt

@@ -24,4 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  document.getElementById('imprimir-delivery').addEventListener('click', function() {
+    window.open('print-template.html', '_blank', 'width=350,height=420');
+  });
 });
