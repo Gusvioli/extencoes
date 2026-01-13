@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Delivery",
+  "version": "1.0",
+  "description": "Uma extensão para verificar se existe uma entrega SPID no delivery.",
+  "author": "Gustavo Vieira",
+  "icons": {
+    "16": "delivery-bike_9561839.png",
+    "48": "delivery-bike_9561839.png",
+    "128": "delivery-bike_9561839.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "notifications",
+    "tts",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html"
+  }
+}

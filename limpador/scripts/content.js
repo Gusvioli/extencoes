@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const selectBrasil = document.getElementById('brasil');
   const selectEUA = document.getElementById('eua');
   const selectEspanha = document.getElementById('espanha');
+  const selectHistexport = document.getElementById('histexport');
 
   resultadoElement.style.display = 'none';
   resultadoPergunta.style.display = 'none';
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     selectDesenvolvidoPor.innerText = translations[lang].desenvolvidopor;
     selectDesenvolvidoPor.title = translations[lang].desenvolvidoporTitle;
     selectLinkGusvioli.title = translations[lang].desenvolvidoporTitle;
+    selectHistexport.innerText = translations[lang].histexport;
   };
 
   updateLanguage(localStorage.getItem('traduzir'));
@@ -194,6 +196,76 @@ document.addEventListener('DOMContentLoaded', async () => {
       lang,
       translations
     );
+  });
+
+  // Função para obter todo o histórico
+  const getAllHistory = (callback) => {
+    const allResults = [];
+    let endTime;
+    const fetchHistory = () => {
+      const query = { text: '', maxResults: 1000 };
+      if (endTime !== undefined) query.endTime = endTime;
+      chrome.history.search(query, (results) => {
+        console.log(`Fetched ${results.length} items, total so far: ${allResults.length}`);
+        if (results.length === 0) {
+          callback(allResults);
+          return;
+        }
+        allResults.push(...results);
+        const lastItem = results[results.length - 1];
+        endTime = lastItem.lastVisitTime - 1; // Subtrai 1 para garantir busca de itens mais antigos
+        fetchHistory();
+      });
+    };
+    fetchHistory();
+  };
+  
+
+  //Exibir o campo exportar histórico
+  selectHistexport.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    getAllHistory((results) => {
+      if (results.length === 0) {
+        const lang = localStorage.getItem('traduzir');
+        mostrarResultado(translations[lang].ItemNaoEncontrado[0] + translations[lang].histexport + translations[lang].ItemNaoEncontrado[1], 'erro');
+        return;
+      }
+
+      // Código de convertToCSV inline
+      let csvContent;
+      if (results.length === 0) {
+        csvContent = '';
+      } else {
+        const headers = Array.from(new Set(results.flatMap(obj => Object.keys(obj))));
+        results.forEach(obj => {
+          if (obj.lastVisitTime != null) {
+            obj.lastVisitTime = new Date(obj.lastVisitTime).toLocaleString('pt-BR');
+          }
+        });
+        const rows = results.map(obj => {
+          return headers.map(header => {
+            let value = obj[header] === null || obj[header] === undefined ? '' : obj[header];
+            let stringValue = String(value).replace(/"/g, '""');
+            return `"${stringValue}"`;
+          }).join(',');
+        });
+        csvContent = [headers.join(','), ...rows].join('\n');
+      }
+
+      const filename = `historico_navegacao.csv`;
+
+      // Código de downloadCSV inline
+      const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      chrome.downloads.download({
+        url: url,
+        filename: filename,
+        saveAs: false
+      }, () => {
+        URL.revokeObjectURL(url);
+      });
+    });
   });
 
   // Exemplo de uso para mostrar erro

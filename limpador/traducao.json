@@ -28,7 +28,8 @@
         "ItemNaoEncontrado": [
             "Item ",
             " não encontrado."
-        ]
+        ],
+        "histexport": "Exportar"
     },
     "en": {
         "titulo": "History Cleaner",
@@ -59,7 +60,8 @@
         "ItemNaoEncontrado": [
             "Item ",
             " not found."
-        ]
+        ],
+        "histexport": "Export"
     },
     "es": {
         "titulo": "Limpiador de Historial",
@@ -90,6 +92,7 @@
         "ItemNaoEncontrado": [
             "Elemento ",
             " no encontrado."
-        ]
+        ],
+        "histexport": "Exportar"
     }
 }

@@ -1,0 +1,123 @@
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    min-height: 220px;
+}
+
+#app {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(56,189,248,0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+    padding: 32px 22px;
+    margin: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    transition: box-shadow 0.2s;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: #0ea5e9;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-shadow: 0 2px 8px rgba(14,165,233,0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    spacing: nowrap;
+}
+
+#output {
+    width: 100%;
+    min-height: 44px;
+    background: linear-gradient(90deg, #f1f5f9 0%, #e0e7ff 100%);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #334155;
+    font-size: 1.05rem;
+    transition: border 0.2s;
+}
+
+#output_on {
+    background: #22c55e;
+    box-shadow: 0 4px 16px rgba(34,197,94,0.12);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+#output_off {
+    background: #ef4444;
+    box-shadow: 0 4px 16px rgba(239,68,68,0.12);
+    width: 10px;
+    height: 10px;        
+    border-radius: 10px;
+}
+
+#output_no {
+    background: #f97316;
+    box-shadow: 0 4px 16px rgba(249,115,22,0.12);
+    width: 10px;
+    height: 10px;        
+    border-radius: 10px;
+}
+
+button {
+    background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    box-shadow: 0 2px 12px rgba(56,189,248,0.10);
+    margin-bottom: 8px;
+    outline: none;
+}
+
+button:hover, button:focus {
+    background: linear-gradient(90deg, #2563eb 0%, #0ea5e9 100%);
+    box-shadow: 0 6px 24px rgba(56,189,248,0.18);
+    transform: translateY(-2px) scale(1.03);
+}
+
+#status {
+    color: #64748b;
+    font-size: 1rem;
+    margin-top: 8px;
+    text-align: center;
+    font-style: italic;
+}
+
+@media (max-width: 400px) {
+    #app {
+        padding: 16px 6px;
+        margin: 6px;
+    }
+    h1 {
+        font-size: 1.1rem;
+    }
+    button {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #222 !important;
+    font-size: 14pt !important;
+  }
+  header, footer, nav, .no-print {
+    display: none !important;
+  }
+  /* Adicione mais regras conforme necessário */
+}

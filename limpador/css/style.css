@@ -104,6 +104,21 @@ input[type="text"]:focus, select:focus {
   margin-top: 10px;
 }
 
+#button-group-export {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+#history-save-section {
+  display: none;
+  margin-top:18px;
+  border-top:1px solid #ddd;
+  gap: 10px;
+}
+
 button {
   flex: 1;
   padding: 10px 0;
