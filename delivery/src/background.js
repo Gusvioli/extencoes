@@ -1,7 +1,7 @@
 // Este arquivo contém o código do script de fundo da extensão. Ele gerencia eventos que ocorrem em segundo plano, como a inicialização da extensão e a comunicação entre diferentes partes da extensão.
 
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('Extensão delivery instalada.');
+    // Extensão delivery instalada.
 });
 
 // Função para verificar se uma data está próxima da atual (dentro de 5 minutos)
@@ -66,29 +66,28 @@ async function updateSource() {
     const result = await chrome.storage.local.get(['enabled']);
     const enabled = result.enabled ?? true; // Padrão para true se não definido
     if (!enabled) {
-        console.log('Extensão desativada, pulando monitoramento.');
+        // Extensão desativada, pulando monitoramento.
         return;
     }
 
     checkTabAndGetSource('https://janis.in/*', (exists, count, data) => {
         if (!exists || count === 0 || !data) {
-            console.log('Nenhuma aba encontrada ou erro ao obter dados.');
+            // Nenhuma aba encontrada ou erro ao obter dados.
             chrome.storage.local.set({ aba: false }, () => {
             if (chrome.runtime.lastError) {
                 console.error('Erro ao salvar aba:', chrome.runtime.lastError);
             } else {
-                console.log('Aba salva com sucesso.');
+                // Aba salva com sucesso.
             }
         });
             return;
         }
-        console.log('Datas extraídas:', data.dates);
 
         chrome.storage.local.set({ aba: true }, () => {
             if (chrome.runtime.lastError) {
                 console.error('Erro ao salvar aba:', chrome.runtime.lastError);
             } else {
-                console.log('Aba salva com sucesso.');
+                // Aba salva com sucesso.
             }
         });
         // Salvar as datas extraídas no localStorage da extensão
@@ -96,7 +95,7 @@ async function updateSource() {
             if (chrome.runtime.lastError) {
                 console.error('Erro ao salvar datas:', chrome.runtime.lastError);
             } else {
-                console.log('Datas salvas no localStorage.');
+                // Datas salvas no localStorage.
             }
         });
         // Aqui você pode adicionar lógica adicional, como enviar notificações ou armazenar dados
@@ -124,13 +123,13 @@ async function updateSource() {
             console.log('Nenhuma data próxima encontrada no localStorage.');
         }
     });
-    chrome.storage.local.get(['adic'], (result) => {
-        let adic = result.adic || 0;
-        adic += 1 + 1;
-        chrome.storage.local.set({ adic: adic }, () => {
-            console.log('adic atualizado para:', adic);
-        });
-    });
+    // chrome.storage.local.get(['adic'], (result) => {
+    //     let adic = result.adic || 0;
+    //     adic += 1 + 1;
+    //     chrome.storage.local.set({ adic: adic }, () => {
+    //         // adic atualizado para: adic
+    //     });
+    // });
 
 }
 
