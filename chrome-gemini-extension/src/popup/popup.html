@@ -4,75 +4,46 @@
     <meta charset="UTF-8" />
     <title>Gemini PrintScreen Auto</title>
     <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
   </head>
   <body>
-    <button
-      id="settingsButton"
-      title="Configurações"
-      style="
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        z-index: 10;
-      "
-    >
-      <img
-        src="../../icons/cogwheel_7586858.png"
-        alt="Configurações"
-        style="width: 32px; height: 32px; display: block"
-      />
-    </button>
-    <div style="display: flex; align-items: center; gap: 5px">
-      <div
-        id="pasteArea"
-        tabindex="0"
-        style="border: 1px dashed #aaa; padding: 10px; margin-bottom: 10px"
-      >
-        Cole ou clique aqui para inserir o printscreen. A imagem será processada
-        automaticamente.
+    <header class="header">
+      <div class="logo">
+        <img src="../../icons/digital-art_10817272.png" alt="Logo" class="logo-img">
+        <h1>Analisador de Imagens</h1>
       </div>
-      <div>
-        <button
-          id="reloadButton"
-          style="display: none; background: none; border: none; cursor: pointer"
-        >
-          <img
-            src="../../icons/reload_3936688.png"
-            alt="Reenviar"
-            title="Tentar novamente"
-            style="width: 32px; height: 32px"
-          />
-        </button>
+      <div class="header-buttons">
+        <button id="reloadButton" class="icon-button icon-reload" title="Analisar Novamente" style="display: none;"></button>
+        <button id="settingsButton" class="icon-button icon-settings" title="Configurações"></button>
       </div>
+    </header>
+
+    <main class="main-content">
+      <div id="pasteArea" tabindex="0">
+        <p>Cole uma imagem ou clique aqui para selecionar.</p>
+        <p class="shortcut">(Ctrl+V)</p>
+      </div>
+      <div id="preview-container" style="display: none;">
+        <img id="previewImage" alt="Pré-visualização da imagem">
+      </div>
+      <div id="result-container" style="display: none;">
+        <div id="result"></div>
+      </div>
+      <div id="status-container" style="display: none;">
+        <div class="spinner"></div>
+        <span id="status-text"></span>
+      </div>
+
+
+
+    </main>
+
+    <div id="contextMenu">
+      <div id="pasteImageOption">Colar imagem</div>
     </div>
-    <img
-      id="previewImage"
-      style="max-width: 100%; display: none; margin-bottom: 10px"
-    />
-    <div id="result"></div>
-    <div
-      id="contextMenu"
-      style="
-        display: none;
-        position: absolute;
-        z-index: 1000;
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px #0001;
-        padding: 6px 0;
-        min-width: 140px;
-      "
-    >
-      <div id="pasteImageOption" style="padding: 8px 18px; cursor: pointer">
-        Colar imagem
-      </div>
-    </div>
+
     <div id="userMessage" style="display: none"></div>
+
     <script src="popup.js"></script>
   </body>
 </html>

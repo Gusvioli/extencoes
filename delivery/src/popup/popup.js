@@ -40,37 +40,38 @@ function checkTabAndGetSource(url, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('toggle-extension');
-  const status = document.getElementById('status');
-  const output = document.getElementById('output_no');
+    const btn = document.getElementById('toggle-extension');
+    const status = document.getElementById('status');
+    const output = document.getElementById('output_');
 
-  // Recupera o estado atual ao abrir o popup
-  chrome.storage.local.get(['enabled'], (result) => {
-    const enabled = result.enabled ?? true;
-    status.textContent = enabled ? 'Extensão Ativada' : 'Extensão Desativada';
-    btn.textContent = enabled ? 'Desativar Extensão' : 'Ativar Extensão';
-    document.body.style.backgroundColor = enabled ? '#90EE90' : '';
-  });
-
-  // Alterna o estado ao clicar no botão
-  btn.addEventListener('click', () => {
+    // Recupera o estado atual ao abrir o popup
     chrome.storage.local.get(['enabled'], (result) => {
-      const enabled = !(result.enabled ?? true);
-      chrome.storage.local.set({ enabled }, () => {
+        const enabled = result.enabled ?? true;
         status.textContent = enabled ? 'Extensão Ativada' : 'Extensão Desativada';
         btn.textContent = enabled ? 'Desativar Extensão' : 'Ativar Extensão';
         document.body.style.backgroundColor = enabled ? '#90EE90' : '';
-      });
     });
-  });
 
-    // Verificar o estado da aba e atualizar o output
-    chrome.storage.local.get(['aba'], (result) => {
-        const aba = (result.aba ?? true);
-        if (aba) {
+    // Alterna o estado ao clicar no botão
+    btn.addEventListener('click', () => {
+        chrome.storage.local.get(['enabled'], (result) => {
+            const enabled = !(result.enabled ?? true);
+            chrome.storage.local.set({ enabled }, () => {
+                status.textContent = enabled ? 'Extensão Ativada' : 'Extensão Desativada';
+                btn.textContent = enabled ? 'Desativar Extensão' : 'Ativar Extensão';
+                document.body.style.backgroundColor = enabled ? '#90EE90' : '';
+            });
+        });
+    });
+
+    // Verifica se a aba está aberta e atualiza o indicador
+    checkTabExists('https://janis.in/*', (exists, count) => {
+        if (exists && count > 0) {
             output.id = "output_on";
+            output.title = "Aba Janis.in está aberta";
         } else {
-            output.id = "output_no";
+            output.id = "output_off";
+            output.title = "Aba Janis.in não está aberta";
         }
     });
 });

@@ -8,8 +8,9 @@ A Extensão Chrome Gemini é projetada para ser minimamente invasiva em relaçã
 
 As únicas informações que a Extensão pode processar são:
 
-Conteúdo do Site: A Extensão pode acessar o texto e, potencialmente, outras informações visíveis em páginas da web (como imagens ou links) apenas quando você interage ativamente com ela para utilizar uma funcionalidade específica do Gemini que requer o contexto da página. Esta informação é processada localmente em seu navegador e enviada diretamente para a API do Gemini para processamento, não sendo armazenada por nós.
-Configurações da Extensão: As preferências e configurações que você personaliza na página de configurações da Extensão (como opções de exibição ou comportamento) são armazenadas localmente em seu navegador usando o chrome.storage.local. Essas configurações são armazenadas apenas em seu dispositivo e não são acessadas ou transmitidas por nós.
+- **Conteúdo do Site:** A Extensão pode acessar o texto e, potencialmente, outras informações visíveis em páginas da web (como imagens ou links) apenas quando você interage ativamente com ela para utilizar uma funcionalidade específica do Gemini que requer o contexto da página. Esta informação é processada localmente em seu navegador e enviada diretamente para a API do Gemini para processamento, não sendo armazenada por nós.
+- **Imagens Coladas pelo Usuário:** Ao utilizar a funcionalidade de descrição de imagens, a imagem que você cola é convertida em formato Base64 e enviada para a API do Gemini. A extensão não armazena nem coleta essas imagens.
+- **Configurações da Extensão:** As preferências e configurações que você personaliza na página de configurações da Extensão (como opções de exibição ou comportamento) são armazenadas localmente em seu navegador usando o `chrome.storage.local`. Essas configurações são armazenadas apenas em seu dispositivo e não são acessadas ou transmitidas por nós.
 
 2. Como Usamos as Informações
 

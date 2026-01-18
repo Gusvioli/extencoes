@@ -60,17 +60,31 @@ function checkTabAndGetSource(url, callback) {
     });
 }
 
+// Função para atualizar a página da aba
+function refreshTab(url, callback) {
+    chrome.tabs.query({ url: url }, (tabs) => {
+        if (tabs.length > 0) {
+            chrome.tabs.reload(tabs[0].id, { bypassCache: true });
+        }
+        if (callback) callback();
+    });
+}
+
 // Função de monitoramento
 async function updateSource() {
-    // Verificar se a extensão está ativada
-    const result = await chrome.storage.local.get(['enabled']);
-    const enabled = result.enabled ?? true; // Padrão para true se não definido
-    if (!enabled) {
-        // Extensão desativada, pulando monitoramento.
-        return;
-    }
+    // Primeiro, atualizar a página da aba
+    refreshTab('https://janis.in/*', async () => {
+        // Aguardar um pouco para a página carregar
+        setTimeout(async () => {
+            // Verificar se a extensão está ativada
+            const result = await chrome.storage.local.get(['enabled']);
+            const enabled = result.enabled ?? true; // Padrão para true se não definido
+            if (!enabled) {
+                // Extensão desativada, pulando monitoramento.
+                return;
+            }
 
-    checkTabAndGetSource('https://janis.in/*', (exists, count, data) => {
+            checkTabAndGetSource('https://janis.in/*', (exists, count, data) => {
         if (!exists || count === 0 || !data) {
             // Nenhuma aba encontrada ou erro ao obter dados.
             chrome.storage.local.set({ aba: false }, () => {
@@ -102,35 +116,51 @@ async function updateSource() {
     });
 
     // Carregar datas do localStorage e verificar se alguma está próxima
-    chrome.storage.local.get(['extractedDates'], (result) => {
+    chrome.storage.local.get(['extractedDates', 'previousCount'], (result) => {
         const storedDates = result.extractedDates || [];
         const closeDates = storedDates.filter(date => isDateClose(date));
+        const previousCount = result.previousCount || 0;
+        
+        // Calcular apenas os novos pedidos que chegaram
+        const newOrders = closeDates.length - previousCount;
+        
         // const closeDates = "13/01/2026 13:53";
         if (closeDates.length > 0) {
             console.log('Datas próximas encontradas no localStorage:', closeDates);
-            // Emitir alerta e som
-            chrome.notifications.create({
-                type: 'basic',
-                iconUrl: chrome.runtime.getURL('delivery-bike_9561839.png'), // Ícone da extensão
-                title: 'SPID: Entrega Próxima!',
-                message: `Data e hora: ${closeDates[0]}`,
-                // message: `Data e hora: ${closeDates}`,
-                priority: 2
-            });
-            // Emitir som via TTS
-            chrome.tts.speak('SPID: Entrega próxima detectada!', { lang: 'pt-BR' });
+            console.log('Novos pedidos chegados:', newOrders);
+            
+            // Atualizar badge do ícone com a quantidade de novos pedidos
+            if (newOrders > 0) {
+                chrome.action.setBadgeText({ text: newOrders.toString() });
+                chrome.action.setBadgeBackgroundColor({ color: '#FF0000' }); // Vermelho para alertar
+                
+                // Emitir alerta e som apenas para novos pedidos
+                chrome.notifications.create({
+                    type: 'basic',
+                    iconUrl: chrome.runtime.getURL('delivery-bike_9561839.png'), // Ícone da extensão
+                    title: 'SPID: ' + newOrders + ' Entrega(s) Próxima(s)!',
+                    message: `Data e hora: ${closeDates[0]}`,
+                    priority: 2
+                });
+                // Emitir som via TTS
+                chrome.tts.speak(`SPID: ${newOrders} entrega(s) próxima(s) detectada(s)!`, { lang: 'pt-BR' });
+            } else {
+                // Se não há novos pedidos, manter o badge com a quantidade total
+                chrome.action.setBadgeText({ text: closeDates.length.toString() });
+                chrome.action.setBadgeBackgroundColor({ color: '#FF9800' }); // Laranja para avisos existentes
+            }
+            
+            // Salvar a contagem atual para comparação futura
+            chrome.storage.local.set({ previousCount: closeDates.length });
         } else {
             console.log('Nenhuma data próxima encontrada no localStorage.');
+            // Limpar badge quando não houver datas próximas
+            chrome.action.setBadgeText({ text: '' });
+            chrome.storage.local.set({ previousCount: 0 });
         }
     });
-    // chrome.storage.local.get(['adic'], (result) => {
-    //     let adic = result.adic || 0;
-    //     adic += 1 + 1;
-    //     chrome.storage.local.set({ adic: adic }, () => {
-    //         // adic atualizado para: adic
-    //     });
-    // });
-
+        }, 2000); // Aguardar 2 segundos para a página carregar completamente
+    });
 }
 
 // Iniciar monitoramento em background
