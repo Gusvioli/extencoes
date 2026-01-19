@@ -10,9 +10,42 @@ Extensão para Google Chrome que integra funcionalidades do Gemini com uma inter
 - **Mensagens Modais:** Ao retornar das configurações, uma janela de mensagem confirma a ação realizada.
 - **Ocultação de Resultados:** O resultado anterior é automaticamente ocultado ao voltar das configurações.
 - **Design Responsivo:** Estilização moderna para melhor experiência do usuário.
-- **Melhor Experiência do Usuário**: Exibe uma mensagem de erro clara na interface ao interagir com páginas restritas.
+- **Janela Flutuante Confiável**: Implementada execução direta de função para garantir a abertura da janela flutuante.
 
 ## Changelog
+
+### Versão 1.2.14
+
+- **Janela Flutuante Confiável**: Abertura da janela flutuante agora é feita através da execução direta de uma função no content script, contornando problemas de comunicação.
+
+### Versão 1.2.13
+
+- **Configurações não Abrindo**: Corrigido o problema onde a página de configurações não abria. Adicionado um event listener ao botão de configurações no `popup.js` que redireciona corretamente para `settings.html`.
+
+### Versão 1.2.12
+
+- **Correção de Bug Visual**: Ícone do botão "Voltar" na página de configurações foi corrigido.
+- **Melhorias de Diagnóstico**: Logs detalhados foram adicionados aos scripts `content.js` e `popup/settings.js` para facilitar a identificação de problemas na inserção de imagens e na funcionalidade das configurações.
+
+### Versão 1.2.11
+
+- **Diagnóstico Abrangente**: Adicionados logs detalhados nos arquivos `content.js` e `popup/settings.js` para depurar problemas com a inserção de imagens e a funcionalidade das configurações. Os logs agora rastreiam a criação da janela flutuante, a anexação do ouvinte de "paste", o processamento dos dados da imagem, a inicialização do script de configurações, a detecção de elementos da UI, o carregamento e salvamento de dados nas configurações, e o redirecionamento do botão "Voltar".
+
+### Versão 1.2.10
+
+- **Diagnóstico de Inserção de Imagem**: Adicionados logs detalhados no `content.js` para auxiliar na depuração da funcionalidade de inserção de imagem, rastreando a criação da janela flutuante, a anexação do ouvinte de "paste", e o processamento dos dados da imagem.
+
+### Versão 1.2.9
+
+- **Erro "Receiving end does not exist" (Abordagem Simplificada)**: Revertidas todas as lógicas complexas de injeção programática e mecanismos de "ping-pong". A comunicação entre o popup e o content script agora é feita de forma direta, dependendo da injeção declarativa no `manifest.json`. O `content.js` foi simplificado, removendo logs agressivos e ouvintes de "ping".
+
+### Versão 1.2.7
+
+- **Erro "Receiving end does not exist" (Solução Definitiva)**: Implementado um mecanismo de "ping-pong" que verifica se o content script está ativo antes de enviar mensagens, injetando-o sob demanda se necessário.
+
+### Versão 1.2.6
+
+- **Estabilidade Geral**: Revertida a injeção programática do content script para a injeção declarativa via `manifest.json`, corrigindo instabilidades e garantindo um comportamento mais previsível.
 
 ### Versão 1.2.5
 
@@ -24,7 +57,7 @@ Extensão para Google Chrome que integra funcionalidades do Gemini com uma inter
 
 ### Versão 1.2.3
 
-- A injeção do content script agora é feita de forma programática, garantindo que o script esteja pronto antes de receber mensagens. Isso resolve o erro "Receiving end does not exist" de forma definitiva.
+- A injeção do content script agora é feita de forma programática, garantindo que o script esteja pronto antes de receber mensagens.
 
 ### Versão 1.2.2
 

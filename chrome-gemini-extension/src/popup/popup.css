@@ -8,7 +8,7 @@
   --muted-color: #6b7280;
   --success-color: #10b981;
   --error-color: #ef4444;
-  --font-family: 'Inter', sans-serif;
+  --font-family: "Inter", sans-serif;
   --border-radius: 0.75rem;
   --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
@@ -73,11 +73,15 @@ body {
 }
 
 .icon-settings {
-  background-image: url('../../icons/cogwheel_7586858.png');
+  background-image: url("../../icons/cogwheel_7586858.png");
 }
 
 .icon-reload {
-  background-image: url('../../icons/reload_3936688.png');
+  background-image: url("../../icons/reload_3936688.png");
+}
+
+.icon-history {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIj48L2NpcmNsZT48cG9seWxpbmUgcG9pbnRzPSIxMiA2IDEyIDEyIDE2IDE0Ij48L3BvbHlsaW5lPjwvc3ZnPg==");
 }
 
 .main-content {
@@ -96,11 +100,18 @@ body {
   color: var(--muted-color);
   font-size: 0.875rem;
   cursor: pointer;
-  transition: border-color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
   outline: none;
 }
 
-#pasteArea:hover, #pasteArea:focus {
+#fileSelectArea {
+  display: none;
+}
+
+#pasteArea:hover,
+#pasteArea:focus {
   border-color: var(--primary-color);
   background-color: #f0f2ff;
 }
@@ -170,7 +181,9 @@ body {
   background: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   padding: 0.5rem 0;
   min-width: 150px;
   font-size: 0.875rem;
@@ -249,7 +262,9 @@ body {
   padding: 0.6rem 1rem;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: background-color 0.2s, opacity 0.2s;
+  transition:
+    background-color 0.2s,
+    opacity 0.2s;
   margin: 0 0.25rem;
 }
 
@@ -264,4 +279,53 @@ body {
 
 .footer-button:hover {
   background-color: var(--primary-color-hover);
+}
+
+/* Estilos do Histórico */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.history-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.history-item {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.history-date {
+  font-size: 0.75rem;
+  color: var(--muted-color);
+  margin-bottom: 0.25rem;
+}
+
+.history-image {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  box-shadow: var(--shadow);
 }

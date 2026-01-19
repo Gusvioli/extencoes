@@ -1,5 +1,59 @@
 # Desenvolvimento da Extensão Chrome Gemini
 
+## Versão 1.2.14
+
+### Correções de Bugs
+
+- **Janela Flutuante não Abrindo**: Implementada execução direta da função `createFloatingWindow()` no script de conteúdo, contornando problemas de comunicação e garantindo a abertura confiável da janela flutuante.
+
+## Versão 1.2.13
+
+### Correções de Bugs
+
+- **Configurações não Abrindo**: Corrigido o problema onde a página de configurações não abria. Adicionado um event listener ao botão de configurações no `popup.js` que redireciona corretamente para `settings.html`.
+
+## Versão 1.2.12
+
+### Correções de Bugs
+
+- **Ícone do Botão Voltar**: Corrigido o problema do ícone do botão "Voltar" na página de configurações que não estava sendo exibido.
+
+## Versão 1.2.11
+
+### Melhorias
+
+- **Diagnóstico Abrangente**: Adicionados logs detalhados nos arquivos `content.js` e `popup/settings.js` para depurar problemas com a inserção de imagens e a funcionalidade das configurações. Os logs agora rastreiam a criação da janela flutuante, a anexação do ouvinte de "paste", o processamento dos dados da imagem, a inicialização do script de configurações, a detecção de elementos da UI, o carregamento e salvamento de dados nas configurações, e o redirecionamento do botão "Voltar".
+
+## Versão 1.2.10
+
+### Melhorias
+
+- **Diagnóstico de Inserção de Imagem**: Adicionados logs detalhados no `content.js` para auxiliar na depuração da funcionalidade de inserção de imagem, rastreando a criação da janela flutuante, a anexação do ouvinte de "paste", e o processamento dos dados da imagem.
+
+## Versão 1.2.9
+
+### Correções de Bugs
+
+- **Erro "Receiving end does not exist" (Abordagem Simplificada)**: Revertidas todas as lógicas complexas de injeção programática e mecanismos de "ping-pong". A comunicação entre o popup e o content script agora é feita de forma direta, dependendo da injeção declarativa no `manifest.json`. O `content.js` foi simplificado, removendo logs agressivos e ouvintes de "ping".
+
+## Versão 1.2.8
+
+### Melhorias
+
+- **Diagnóstico de Conexão**: Adicionada uma série de logs detalhados no `content.js` para auxiliar na depuração de erros de conexão e garantir que o script esteja sendo injetado e respondendo corretamente.
+
+## Versão 1.2.7
+
+### Correções de Bugs
+
+- **Erro "Receiving end does not exist" (Solução Definitiva)**: Implementado um mecanismo de "ping-pong" onde o popup verifica se o content script está ativo antes de enviar mensagens. Se não estiver, o script é injetado sob demanda. Isso resolve de forma definitiva os erros de comunicação e instabilidade.
+
+## Versão 1.2.6
+
+### Correções de Bugs
+
+- **Instabilidade Geral**: Revertida a injeção programática do content script para a injeção declarativa via `manifest.json`. Isso corrige a instabilidade causada por múltiplas injeções de script e garante um comportamento mais previsível e estável da extensão.
+
 ## Versão 1.2.5
 
 ### Melhorias

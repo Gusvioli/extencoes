@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#metadataOutput {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    white-space: pre-wrap;
+    background-color: #f9f9f9;
+}

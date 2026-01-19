@@ -16,7 +16,7 @@ As únicas informações que a Extensão pode processar são:
 
 As informações processadas pela Extensão são utilizadas estritamente para os seguintes propósitos:
 
-Para fornecer as funcionalidades integradas do Gemini, como sumarização de conteúdo ou respostas contextuais, com base no conteúdo da página quando você as invoca.
+Para fornecer as funcionalidades integradas do Gemini, como sumarização de conteúdo ou respostas contextuais, com base no conteúdo da página através da execução direta de funções ou mensagens quando você as invoca.
 Para salvar e aplicar suas preferências e configurações dentro da própria Extensão.
 
 3. Compartilhamento de Informações
