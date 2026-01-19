@@ -1,61 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Configurações - Gemini</title>
-    <link rel="stylesheet" href="settings.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
-</head>
-<body>
+    <link rel="stylesheet" href="settings.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+    />
+  </head>
+  <body>
     <header class="header">
-        <div class="logo">
-            <img src="../../icons/digital-art_10817272.png" alt="Logo" class="logo-img">
-            <h1>Configurações</h1>
-        </div>
-        <button id="backButton" class="icon-button" title="Voltar">
-            <img src="../../icons/reload_3936688.png" alt="Voltar" class="icon-back">
-        </button>
+      <div class="logo">
+        <img
+          src="../../icons/digital-art_10817272.png"
+          alt="Logo"
+          class="logo-img"
+        />
+        <h1>Configurações</h1>
+      </div>
+      <button id="backButton" class="icon-button" title="Voltar">
+        <img
+          src="../../icons/reload_3936688.png"
+          alt="Voltar"
+          class="icon-back"
+        />
+      </button>
     </header>
 
     <main class="main-content">
-        <form id="settingsForm">
-            <div class="form-group">
-                <label for="apiToken">Token da API Gemini</label>
-                <input type="text" id="apiToken" autocomplete="off" placeholder="Cole seu token aqui">
-            </div>
+      <form id="settingsForm">
+        <div class="form-group">
+          <label for="apiToken">Token da API Gemini</label>
+          <input
+            type="text"
+            id="apiToken"
+            autocomplete="off"
+            placeholder="Cole seu token aqui"
+          />
+        </div>
 
-            <div class="form-group">
-                <label for="geminiModel">Modelo Gemini</label>
-                <select id="geminiModel">
-                    <option value="gemini-1.5-pro-latest" selected>gemini-1.5-pro-latest (Recomendado)</option>
-                    <option value="gemini-1.5-flash-latest">gemini-1.5-flash-latest</option>
-                    <option value="gemini-pro-vision">gemini-pro-vision</option>
-                    <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
-                    <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
-                    <option value="gemini-2.5-flash">gemini-2.5-flash</option>
-                </select>
-            </div>
+        <div class="form-group">
+          <label for="geminiModel">Modelo Gemini</label>
+          <select id="geminiModel">
+            <option value="gemini-1.5-pro-latest" selected>
+              gemini-1.5-pro-latest (Recomendado)
+            </option>
+            <option value="gemini-1.5-flash-latest">
+              gemini-1.5-flash-latest
+            </option>
+            <option value="gemini-pro-vision">gemini-pro-vision</option>
+            <option value="gemini-3-flash-preview">
+              gemini-3-flash-preview
+            </option>
+            <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
+            <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+          </select>
+        </div>
 
-                        <div class="form-group">
+        <div class="form-group">
+          <label for="customPrompt">Prompt personalizado</label>
 
-                            <label for="customPrompt">Prompt personalizado</label>
+          <textarea
+            id="customPrompt"
+            rows="4"
+            placeholder="Digite aqui o prompt que será enviado ao Gemini"
+          ></textarea>
+        </div>
 
-                            <textarea id="customPrompt" rows="4" placeholder="Digite aqui o prompt que será enviado ao Gemini"></textarea>
-
-                        </div>
-
-            
-
-
-
-                        
-
-                        <div class="form-actions">
-                <button type="submit">Salvar</button>
-            </div>
-        </form>
-        <div id="settingsMessage"></div>
+        <div class="form-actions">
+          <button type="submit">Salvar</button>
+        </div>
+      </form>
+      <div id="settingsMessage"></div>
     </main>
     <script src="settings.js"></script>
-</body>
+  </body>
 </html>

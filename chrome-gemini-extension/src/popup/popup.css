@@ -214,17 +214,20 @@ body {
   color: #065f46;
   border: 1px solid var(--success-color);
 }
+
 .error-message {
   display: block;
   background-color: #fee2e2;
   color: #991b1b;
   border: 1px solid var(--error-color);
 }
+
 .warning-message {
   background-color: #fef3c7;
   color: #92400e;
   border: 1px solid #f59e0b;
 }
+
 .info-message {
   background-color: #e0e7ff;
   color: #3730a3;

@@ -22,10 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.sync.get(
     ["geminiApiToken", "geminiModel", "customPrompt"],
     (data) => {
+      if (chrome.runtime.lastError) {
+        console.error("Error loading settings:", chrome.runtime.lastError);
+        return;
+      }
       console.log("Settings script: Loaded settings:", data);
-      apiToken.value = data.geminiApiToken || "";
-      geminiModel.value = data.geminiModel || "gemini-1.5-pro";
-      customPrompt.value = data.customPrompt || "";
+      const settings = data || {};
+      apiToken.value = settings.geminiApiToken || "";
+      geminiModel.value = settings.geminiModel || "gemini-1.5-pro";
+      customPrompt.value = settings.customPrompt || "";
     },
   );
 
@@ -41,6 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Settings script: Data to save:", dataToSave);
 
     chrome.storage.sync.set(dataToSave, () => {
+      if (chrome.runtime.lastError) {
+        console.error("Error saving settings:", chrome.runtime.lastError);
+        msg.textContent = "Erro ao salvar!";
+        msg.style.color = "red";
+        return;
+      }
       console.log("Settings script: Settings saved successfully.");
       msg.textContent = "Configurações salvas!";
       msg.style.color = "green";

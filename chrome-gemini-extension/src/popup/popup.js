@@ -297,6 +297,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (clearHistoryButton) {
     clearHistoryButton.addEventListener("click", () => {
       chrome.storage.local.remove("history", () => {
+        if (chrome.runtime.lastError) {
+          console.error("Error clearing history:", chrome.runtime.lastError);
+          return;
+        }
         loadHistory();
       });
     });
@@ -304,7 +308,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadHistory() {
     chrome.storage.local.get("history", (data) => {
-      const history = data.history || [];
+      if (chrome.runtime.lastError) {
+        console.error("Error loading history:", chrome.runtime.lastError);
+        historyList.innerHTML =
+          "<p style='text-align:center; color: var(--error-color);'>Erro ao carregar histórico.</p>";
+        return;
+      }
+      const history = data && data.history ? data.history : [];
       historyList.innerHTML = "";
 
       if (history.length === 0) {
