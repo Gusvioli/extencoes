@@ -8,6 +8,71 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
     />
+    <style>
+      /* Estilos para o modo de resultado (aba cheia) */
+      body.result-mode {
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        background-color: #f3f4f6;
+        padding: 40px 20px;
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body.result-mode .header {
+        width: 100%;
+        max-width: 800px;
+        border-radius: 12px 12px 0 0;
+        box-shadow:
+          0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        position: static;
+        margin: 0;
+      }
+
+      body.result-mode .main-content {
+        width: 100%;
+        max-width: 800px;
+        background-color: #ffffff;
+        border-radius: 0 0 12px 12px;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        padding: 32px;
+        height: auto;
+        overflow: visible;
+        flex: none;
+      }
+
+      body.result-mode #preview-container {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        justify-content: center;
+      }
+
+      body.result-mode #previewImage {
+        max-height: 500px;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 4px;
+      }
+
+      body.result-mode #result {
+        font-size: 1.1rem;
+        line-height: 1.75;
+        color: #1f2937;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -24,6 +89,11 @@
           id="historyButton"
           class="icon-button icon-history"
           title="Histórico"
+        ></button>
+        <button
+          id="captureButton"
+          class="icon-button icon-crop"
+          title="Capturar Área"
         ></button>
         <button
           id="reloadButton"

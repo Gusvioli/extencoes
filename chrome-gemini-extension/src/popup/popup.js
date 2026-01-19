@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const statusContainer = document.getElementById("status-container");
   const statusText = document.getElementById("status-text");
   const reloadButton = document.getElementById("reloadButton");
+  const captureButton = document.getElementById("captureButton");
 
   const historyButton = document.getElementById("historyButton");
   const historyContainer = document.getElementById("history-container");
@@ -261,6 +262,14 @@ document.addEventListener("DOMContentLoaded", function () {
     reader.readAsDataURL(blob);
   }
 
+  // Capture Area Button
+  if (captureButton) {
+    captureButton.addEventListener("click", () => {
+      chrome.runtime.sendMessage({ type: "START_CROP" });
+      window.close();
+    });
+  }
+
   // Initial state: ensure paste area is visible and others hidden
   clearContentAndHideContainers();
 
@@ -352,5 +361,58 @@ document.addEventListener("DOMContentLoaded", function () {
         historyList.appendChild(div);
       });
     });
+  }
+
+  // Listen for storage changes to update UI if opened in a tab
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === "local") {
+      if (
+        changes.processingState ||
+        changes.geminiResult ||
+        changes.currentImage
+      ) {
+        checkStorageState();
+      }
+    }
+  });
+
+  // Check if opened in result mode
+  if (window.location.search.includes("mode=result")) {
+    document.body.classList.add("result-mode");
+    checkStorageState();
+  }
+
+  function checkStorageState() {
+    chrome.storage.local.get(
+      ["processingState", "geminiResult", "currentImage"],
+      (data) => {
+        if (data.processingState === "in_progress") {
+          clearContentAndHideContainers();
+          showStatus("Processando imagem...", true);
+        } else if (data.processingState === "completed" && data.geminiResult) {
+          hideStatus();
+          const result = data.geminiResult;
+          if (result.success) {
+            resultDiv.innerHTML = result.description.replace(/\n/g, "<br>");
+            resultContainer.style.display = "block";
+            reloadButton.style.display = "block";
+            pasteArea.style.display = "none";
+            if (mainContent) mainContent.style.display = "flex";
+          } else {
+            showErrorMessage(result.error);
+          }
+        } else if (data.processingState === "error") {
+          hideStatus();
+          showErrorMessage(data.geminiResult?.error || "Erro desconhecido");
+        }
+
+        if (data.currentImage) {
+          lastImageData = data.currentImage;
+          previewImage.src = `data:${data.currentImage.mimeType};base64,${data.currentImage.base64}`;
+          previewContainer.style.display = "block";
+          pasteArea.style.display = "none";
+        }
+      },
+    );
   }
 });

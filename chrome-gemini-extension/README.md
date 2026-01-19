@@ -14,6 +14,12 @@ Extensão para Google Chrome que integra funcionalidades do Gemini com uma inter
 
 ## Changelog
 
+### Versão 1.2.15
+
+- **Cancelamento de Recorte**: Adicionada funcionalidade para cancelar o modo de recorte pressionando a tecla "Esc".
+- **Tutorial nas Configurações**: Incluída seção "Como funciona?" na tela de configurações explicando os recursos.
+- **Melhorias na Interface**: A página de resultados agora possui um layout centralizado e moderno; feedback de salvamento de configurações reposicionado.
+
 ### Versão 1.2.14
 
 - **Janela Flutuante Confiável**: Abertura da janela flutuante agora é feita através da execução direta de uma função no content script, contornando problemas de comunicação.

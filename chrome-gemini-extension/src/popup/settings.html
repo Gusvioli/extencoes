@@ -8,6 +8,38 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
     />
+    <style>
+      .tutorial-section {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        font-size: 13px;
+        color: #444;
+        line-height: 1.5;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .tutorial-section h3 {
+        margin-top: 0;
+        font-size: 15px;
+        color: #222;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+      }
+      .tutorial-section strong {
+        display: block;
+        color: #000;
+        margin-bottom: 5px;
+      }
+      .tutorial-section ul {
+        padding-left: 20px;
+        margin: 0;
+      }
+      .tutorial-section li {
+        margin-bottom: 5px;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -68,11 +100,32 @@
           ></textarea>
         </div>
 
-        <div class="form-actions">
+        <div class="form-actions" style="display: flex; align-items: center">
           <button type="submit">Salvar</button>
         </div>
       </form>
       <div id="settingsMessage"></div>
+
+      <div class="tutorial-section">
+        <h3>Como funciona?</h3>
+        
+        <div style="margin-bottom: 15px;">
+          <strong>Configurações:</strong>
+          <ul>
+            <li><strong>Token da API:</strong> Sua chave de acesso do Google AI Studio. Essencial para conectar a extensão à inteligência artificial.</li>
+            <li><strong>Modelo:</strong> A versão da IA. <em>Pro</em> é geralmente mais inteligente, enquanto <em>Flash</em> é mais rápido.</li>
+            <li><strong>Prompt:</strong> O comando padrão enviado junto com a imagem (ex: "Descreva isto detalhadamente").</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Funcionalidades:</strong>
+          <ul>
+            <li><strong>Recorte (Crop):</strong> No menu principal, use o ícone de câmera para selecionar e analisar apenas uma parte da tela. (Pressione <b>Esc</b> para cancelar).</li>
+            <li><strong>Colar (Ctrl+V):</strong> Copie uma imagem de qualquer lugar e cole no menu principal para análise imediata.</li>
+          </ul>
+        </div>
+      </div>
     </main>
     <script src="settings.js"></script>
   </body>
