@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "IA para analizar Imagens",
+  "name": "IA para analisar imagens",
   "version": "1.2.14",
   "description": "Cole uma imagem e receba uma resposta automaticamente usando inteligência artificial.",
   "icons": {
