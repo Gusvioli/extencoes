@@ -12,8 +12,7 @@
   "action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
-    "default_title": "Limpador de histórico de navegação",
-    "browser_style": true
+    "default_title": "Limpador de histórico de navegação"
   },
   "permissions": ["history", "downloads", "unlimitedStorage"]
 }
