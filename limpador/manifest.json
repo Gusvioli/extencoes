@@ -1,38 +1,19 @@
 {
-    "manifest_version": 3,
-    "name": "Limpador de histórico de navegação",
-    "description": "Limpe facilmente itens específicos ou todo o histórico de navegação do seu navegador. Suporte a múltiplos idiomas.",
-    "version": "1.2.0",
-    "author": "Gusvioli",
-    "icons": {
-        "16": "icon.png",
-        "48": "icon.png",
-        "128": "icon.png"
-    },
-    "action": {
-        "default_icon": "icon.png",
-        "default_popup": "popup.html",
-        "default_title": "Limpador de histórico de navegação",
-        "browser_style": true
-      },
-    "permissions": [
-        "history",
-        "downloads",
-        "unlimitedStorage"
-    ],
-    "host_permissions": [
-      "http://*/*",
-      "https://*/*"
-    ],
-    "content_scripts": [
-        {
-            "js": [
-                "scripts/content.js"
-            ],
-            "matches": [
-                "<all_urls>"
-            ],
-            "run_at": "document_end"
-        }
-    ]
+  "manifest_version": 3,
+  "name": "Limpador de histórico de navegação",
+  "description": "Limpe facilmente itens específicos ou todo o histórico de navegação do seu navegador. Suporte a múltiplos idiomas.",
+  "version": "1.2.2",
+  "author": "Gusvioli",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Limpador de histórico de navegação",
+    "browser_style": true
+  },
+  "permissions": ["history", "downloads", "unlimitedStorage"]
 }

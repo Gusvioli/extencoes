@@ -1,280 +1,255 @@
+/* Reset e Variáveis */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 :root {
-  --primary: #4d90fe;
-  --primary-dark: #357ae8;
-  --background: #f7f8fa;
-  --text: #222;
-  --border: #e0e3e8;
-  --radius: 8px;
+    /* Cores */
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary: #f3f4f6;
+    --secondary-hover: #e5e7eb;
+    --secondary-text: #374151;
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
+    --bg-body: #ffffff;
+    --bg-surface: #f9fafb;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    
+    /* Espaçamento e Layout */
+    --radius: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--text);
-  width: 480px;
+    font-family: var(--font-family);
+    background: var(--bg-body);
+    color: var(--text-main);
+    width: 400px; /* Largura padrão para popups */
+    min-height: 500px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-header, footer {
-  width: 100%;
-  text-align: center;
-  padding: 10px 0;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
+/* Layout Flexbox para Sticky Footer */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: auto 16px;
-  margin: 0 auto;
-  max-width: 480px;
-  background: var(--background);
-  min-height: calc(80vh - 60px); /* Adjust for header/footer height */
-  padding-bottom: 60px; /* Ensure content doesn't overlap footer */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  border-radius: var(--radius);
-  margin-top: 20px;
-  margin-bottom: 40px;
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--bg-body);
+    border-bottom: 1px solid var(--border);
 }
 
-nav#select-bandeira-tradutora {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 16px;
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-nav#select-bandeira-tradutora button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  outline: none;
+.logo-area h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
 }
 
-nav#select-bandeira-tradutora img {
-  width: 28px;
-  height: 28px;
-  transition: filter 0.2s;
+.lang-nav {
+    display: flex;
+    gap: 8px;
 }
 
-form {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  padding: 20px 16px;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 18px;
+.lang-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.1s;
 }
 
-form label {
-  font-weight: 500;
-  margin-bottom: 8px;
-  display: block;
+.lang-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
-input[type="text"], select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 1rem;
-  background: #f9fafb;
-  margin-top: 4px;
-  margin-bottom: 12px;
-  transition: border 0.2s;
-  outline: none;
+.lang-btn img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
 }
 
-input[type="text"]:focus, select:focus {
-  border-color: var(--primary);
-  background: #fff;
+/* Main Content */
+.app-content {
+    flex: 1; /* Ocupa o espaço restante */
+    padding: 20px;
+    background: var(--bg-surface);
 }
 
-.button-group {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
+/* Form */
+.cleaner-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-#button-group-export {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-#history-save-section {
-  display: none;
-  margin-top:18px;
-  border-top:1px solid #ddd;
-  gap: 10px;
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
 }
 
-button {
-  flex: 1;
-  padding: 10px 0;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  background: var(--primary);
-  color: #fff;
-  transition: background 0.2s, color 0.2s;
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    background: #fff;
+    color: var(--text-main);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
 }
 
-button:hover, button:focus {
-  background: var(--primary-dark);
-  outline: 2px solid var(--primary-dark);
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-#resultado, #resultadoPergunta {
-  padding: 10px;
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto 10px auto;
-  font-size: 1rem;
-  word-break: break-all;
-  background: #f1f3f7;
-  border-radius: var(--radius);
-  min-height: 24px;
+/* Botões */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  background: #fff;
-  border-top: 1px solid var(--border);
-  font-size: 0.95rem;
-  z-index: 10;
+/* Botão "Limpar Tudo" ocupa a largura total na linha de baixo */
+#limparAll {
+    grid-column: 1 / -1;
 }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-a:hover, a:focus {
-  text-decoration: underline;
+.btn:active {
+    transform: translateY(1px);
 }
 
-h1 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
 }
 
-label {
-  margin-bottom: 4px;
-  display: block;
+.btn-primary:hover {
+    background: var(--primary-hover);
 }
 
-input#valorASerApagado {
-  padding: 10px 12px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 1rem;
-  background: #f9fafb;
-  margin-top: 4px;
-  margin-bottom: 12px;
-  transition: border 0.2s;
-  outline: none;
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--secondary-text);
+    border: 1px solid var(--border);
 }
 
-input#valorASerApagado:focus {
-  border-color: var(--primary);
-  background: #fff;
+.btn-secondary:hover {
+    background: var(--secondary-hover);
 }
 
-button#limpar, button#limparAll {
-  padding: 10px 0;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  background: var(--primary);
-  color: #fff;
-  transition: background 0.2s, color 0.2s;
+.btn-danger {
+    background: #fff;
+    color: var(--danger);
+    border: 1px solid var(--danger);
 }
 
-button#limpar:hover, button#limparAll:hover,
-button#limpar:focus, button#limparAll:focus {
-  background: var(--primary-dark);
-  outline: 2px solid var(--primary-dark);
+.btn-danger:hover {
+    background: #fef2f2;
+    border-color: var(--danger-hover);
+    color: var(--danger-hover);
 }
 
-span#desenvolvidopor {
-  display: block;
-  margin-top: 12px;
-  font-size: 0.875rem;
-  color: #666;
+/* Resultados e Alertas */
+.alert {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    display: none; /* Controlado pelo JS */
+    word-break: break-word;
+}
+
+/* Modal de Confirmação (Estilização interna gerada pelo JS) */
+.confirm-modal {
+    margin-top: 20px;
 }
 
 .pergunta-confirmacao {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  background: #fffbe7;
-  border: 1.5px solid #ffe082;
-  border-radius: 10px;
-  padding: 22px 18px;
-  box-shadow: 0 4px 24px rgba(255, 193, 7, 0.10);
-  font-size: 1.08rem;
-  color: #7a5a00;
-  margin: 18px auto;
-  max-width: 340px;
-  width: 95vw;
-  z-index: 100;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid #f59e0b; /* Amarelo de aviso */
+    padding: 16px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .pergunta-confirmacao span {
-  font-weight: 500;
-  text-align: center;
-  line-height: 1.4;
+    font-weight: 500;
+    color: var(--text-main);
 }
 
-.pergunta-confirmacao .botoes {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  justify-content: center;
+.pergunta-confirmacao div {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
 }
 
-.pergunta-confirmacao button {
-  background: #ffd54f;
-  color: #7a5a00;
-  border: none;
-  border-radius: 6px;
-  padding: 9px 22px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  min-width: 80px;
+/* Footer */
+.app-footer {
+    padding: 16px;
+    text-align: center;
+    background: var(--bg-body);
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
 }
 
-.pergunta-confirmacao button:hover,
-.pergunta-confirmacao button:focus {
-  background: #ffe082;
-  color: #5d4300;
-  outline: 2px solid #ffd54f;
+.app-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
 }
 
-@media (max-width: 500px) {
-  main, form, #resultado, #resultadoPergunta {
-    max-width: 98vw;
-    width: 98vw;
-  }
+.app-footer a:hover {
+    text-decoration: underline;
 }

@@ -1,50 +1,73 @@
-Política de Privacidade do Limpador de Histórico de Navegação
+# Política de Privacidade do Limpador de Histórico de Navegação
 
 A sua privacidade é importante para nós. Esta Política de Privacidade descreve como o Limpador de Histórico de Navegação (doravante referido como "extensão") coleta, usa e protege suas informações. Ao utilizar a extensão, você concorda com as práticas descritas nesta política.
 
-1. Informações Coletadas
-1.1 Informações de Navegação
+## 1. Informações Coletadas
+
+### 1.1 Informações de Navegação
+
 A extensão pode coletar informações relacionadas ao seu histórico de navegação, incluindo URLs visitadas, datas e horários de acesso.
 
-1.2 Informações Não Pessoais
+### 1.2 Informações Não Pessoais
+
 Podemos coletar informações não pessoais, como tipo de navegador, idioma do navegador e sistema operacional, para melhorar a funcionalidade da extensão.
 
-2. Uso das Informações
-2.1 Limpeza do Histórico de Navegação
+## 2. Uso das Informações
+
+### 2.1 Limpeza do Histórico de Navegação
+
 As informações de navegação coletadas são usadas exclusivamente para fornecer a funcionalidade principal da extensão, que é limpar seu histórico de navegação conforme solicitado por você.
 
-3. Compartilhamento de Informações
-3.1 Com Terceiros
+### 2.2 Exportação de Dados (CSV)
+
+A extensão oferece a funcionalidade de exportar o histórico de navegação para um arquivo CSV. Este processo é realizado inteiramente no dispositivo do usuário. O arquivo gerado é salvo localmente e nenhum dado contido nele é transmitido para nós ou para terceiros durante este processo.
+
+## 3. Compartilhamento de Informações
+
+### 3.1 Com Terceiros
+
 Não compartilhamos, vendemos ou alugamos suas informações pessoais a terceiros, exceto conforme descrito nesta Política de Privacidade.
 
-3.2 Conformidade Legal
+### 3.2 Conformidade Legal
+
 Podemos divulgar suas informações se exigido por lei ou se acreditarmos que tal ação é necessária para:
 
-Cumprir com a legislação aplicável;
-Proteger nossos direitos ou propriedade;
-Proteger a segurança pessoal dos usuários da extensão ou do público.
-4. Segurança das Informações
+* Cumprir com a legislação aplicável;
+* Proteger nossos direitos ou propriedade;
+* Proteger a segurança pessoal dos usuários da extensão ou do público.
+
+## 4. Segurança das Informações
+
 Implementamos medidas de segurança adequadas para proteger suas informações contra acesso, alteração, divulgação ou destruição não autorizados. No entanto, nenhuma transmissão de dados pela internet ou sistema de armazenamento eletrônico é 100% seguro.
 
-5. Retenção de Dados
+## 5. Retenção de Dados
+
 Todos os dados coletados não são armazenados conosco permanecem exclusivamente no navegador onde a extensão foi instalada. Manteremos suas informações pessoais somente pelo período necessário para cumprir os propósitos para os quais foram coletadas, incluindo requisitos legais, contábeis ou de relatórios.
 
-6. Direitos dos Usuários
-6.1 Acesso e Correção
+## 6. Direitos dos Usuários
+
+### 6.1 Acesso e Correção
+
 Você tem o direito de acessar e corrigir suas informações pessoais. Para tal, entre em contato conosco conforme descrito na seção 8.
 
-6.2 Exclusão
+### 6.2 Exclusão
+
 Você pode solicitar a exclusão de suas informações pessoais a qualquer momento. No entanto, pode ser necessário reter certas informações para fins legais ou administrativos.
 
-7. Alterações a Esta Política de Privacidade
+## 7. Alterações a Esta Política de Privacidade
+
 Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página. Recomendamos que você revise esta política regularmente para se manter informado sobre como estamos protegendo suas informações.
 
-8. Contato
-Se você tiver alguma dúvida ou preocupação sobre esta Política de Privacidade ou nossas práticas de privacidade, entre em contato conosco através do e-mail: gustavovieiradeoliveira@gmail.com.
+## 8. Contato
 
-9. Consentimento
+Se você tiver alguma dúvida ou preocupação sobre esta Política de Privacidade ou nossas práticas de privacidade, entre em contato conosco através do e-mail: <gustavovieiradeoliveira@gmail.com>.
+
+## 9. Consentimento
+
 Ao usar a extensão, você consente com a coleta e uso de suas informações conforme descrito nesta Política de Privacidade.
 
-Última atualização: 16 de julho de 2024
+---
+
+**Última atualização:** Outubro de 2024
 
 Esta Política de Privacidade foi criada para assegurar que suas informações sejam manejadas de forma segura e responsável. Agradecemos por confiar no Limpador de Histórico de Navegação.

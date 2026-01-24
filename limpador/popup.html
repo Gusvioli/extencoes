@@ -1,43 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Limpador de Histórico</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
     <script src="scripts/content.js" defer></script>
-</head>
-<body>
-    <header>
-        <img src="icon.png" alt="Ícone do Limpador" width="40" height="40" />
-        <h1 id="traduzir-titulo">Limpador de Histórico</h1>
-    </header>
-    <main>
-        <nav id="select-bandeira-tradutora" aria-label="Seleção de idioma">
-            <button id="brasil" aria-label="Português"><img src="brasil.png" alt="Bandeira do Brasil" /></button>
-            <button id="eua" aria-label="Inglês"><img src="eua.png" alt="Bandeira dos EUA" /></button>
-            <button id="espanha" aria-label="Espanhol"><img src="espanha.png" alt="Bandeira da Espanha" /></button>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <div class="logo-area">
+          <img src="icon.png" alt="Ícone" width="32" height="32" />
+          <h1 id="traduzir-titulo">Limpador de Histórico</h1>
+        </div>
+        <nav
+          id="select-bandeira-tradutora"
+          class="lang-nav"
+          aria-label="Seleção de idioma"
+        >
+          <button id="brasil" class="lang-btn" aria-label="Português">
+            <img src="brasil.png" alt="Brasil" />
+          </button>
+          <button id="eua" class="lang-btn" aria-label="Inglês">
+            <img src="eua.png" alt="EUA" />
+          </button>
+          <button id="espanha" class="lang-btn" aria-label="Espanhol">
+            <img src="espanha.png" alt="Espanha" />
+          </button>
         </nav>
-        <form autocomplete="off">
-            <label for="select-History" id="labe-select-History">Selecione o item no histórico que deseja limpar</label>
-            <select name="select" id="select-History"></select>
-            <input type="text" id="valorASerApagado" placeholder="O que você quer limpar?" title="A exclusão se dará para todos os registros que contiverem o texto digitado">
-            <div class="button-group">
-                <button id="limpar" type="button" title="Limpar todos os registros que contiverem o texto digitado">Limpar</button>
-                <button id="limparAll" type="button" title="Limpar todos os registros">Limpar Tudo</button>
-                <button id="histexport" type="button" title="Exportar todo o histórico em CSV">Exportar</button>
+      </header>
+
+      <main class="app-content">
+        <form autocomplete="off" class="cleaner-form">
+          <div class="form-group">
+            <label
+              for="select-History"
+              id="labe-select-History"
+              class="form-label"
+              >Selecione o item</label
+            >
+            <div class="select-wrapper">
+              <select
+                name="select"
+                id="select-History"
+                class="form-control"
+              ></select>
             </div>
+          </div>
+
+          <div class="form-group">
+            <input
+              type="text"
+              id="valorASerApagado"
+              class="form-control"
+              placeholder="O que você quer limpar?"
+            />
+          </div>
+
+          <div class="actions">
+            <button id="limpar" type="button" class="btn btn-primary">
+              Limpar
+            </button>
+            <button id="histexport" type="button" class="btn btn-secondary">
+              Exportar
+            </button>
+            <button id="limparAll" type="button" class="btn btn-danger">
+              Limpar Tudo
+            </button>
+          </div>
         </form>
-        <div id="resultado" aria-live="polite"></div>
-        <div id="resultadoPergunta"></div>
-    </main>
-    <footer>
+
+        <div id="resultado" class="alert" aria-live="polite"></div>
+        <div id="resultadoPergunta" class="confirm-modal"></div>
+      </main>
+
+      <footer class="app-footer">
         <p>
-            2023 <span id="desenvolvidopor">Desenvolvido por</span>
-            <a id="linkGusvioli" target="_blank" href="https://github.com/Gusvioli" title="Link para Github de Gustavo Vieira - Gusvioli">
-                Gustavo Vieira - Gusvioli
-            </a>
+          <span id="desenvolvidopor">Desenvolvido por</span>
+          <a
+            id="linkGusvioli"
+            target="_blank"
+            href="https://github.com/Gusvioli"
+            >Gustavo Vieira</a
+          >
         </p>
-    </footer>
-</body>
+      </footer>
+    </div>
+  </body>
 </html>
