@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Limpador de histórico de navegação",
-  "description": "Limpe facilmente itens específicos ou todo o histórico de navegação do seu navegador. Suporte a múltiplos idiomas.",
-  "version": "1.2.2",
+  "description": "Gerencie seu histórico com facilidade: limpeza seletiva, remoção total e exportação para CSV. Suporte a múltiplos idiomas.",
+  "version": "1.2.3",
   "author": "Gusvioli",
   "icons": {
     "16": "icon.png",
